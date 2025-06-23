@@ -1,0 +1,111 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "Clang",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/usr/local/cuda-12.5/include",
+						"/usr/lib/clang/17/include",
+						"/usr/local/include",
+						"/usr/include"
+					],
+					"linkDirectories" : 
+					[
+						"/usr/lib/clang/17/lib/x86_64-redhat-linux-gnu",
+						"/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13",
+						"/opt/rh/gcc-toolset-13/root/usr/lib64",
+						"/lib64",
+						"/usr/lib64",
+						"/lib",
+						"/usr/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"gcc",
+						"gcc_s",
+						"c",
+						"gcc",
+						"gcc_s"
+					]
+				},
+				"path" : "/usr/bin/clang",
+				"version" : "17.0.6"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "Clang",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"/usr/local/cuda-12.5/include",
+						"/opt/rh/gcc-toolset-13/root/usr/include/c++/13",
+						"/opt/rh/gcc-toolset-13/root/usr/include/c++/13/x86_64-redhat-linux",
+						"/opt/rh/gcc-toolset-13/root/usr/include/c++/13/backward",
+						"/usr/lib/clang/17/include",
+						"/usr/local/include",
+						"/usr/include"
+					],
+					"linkDirectories" : 
+					[
+						"/usr/lib/clang/17/lib/x86_64-redhat-linux-gnu",
+						"/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13",
+						"/opt/rh/gcc-toolset-13/root/usr/lib64",
+						"/lib64",
+						"/usr/lib64",
+						"/lib",
+						"/usr/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"m",
+						"gcc_s",
+						"gcc",
+						"c",
+						"gcc_s",
+						"gcc"
+					]
+				},
+				"path" : "/usr/bin/clang++",
+				"version" : "17.0.6"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

@@ -1,0 +1,3 @@
+/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/helloWorld.dir
+/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/edit_cache.dir
+/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/rebuild_cache.dir

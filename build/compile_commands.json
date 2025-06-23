@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/s5725067/myRepos/scriptEditor/build",
+  "command": "/usr/bin/clang++ -DhelloWorld_EXPORTS -I/home/s5725067/devkitBase/include -I/home/s5725067/devkitBase/include/Python39  -Wl,-exclude-libs,ALL -D_GLIBCXX_USE_CXX11_ABI=0 -g -std=gnu++14 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden   -Wextra -Wno-unused-parameter -Wno-unused-variable -o CMakeFiles/helloWorld.dir/helloWorld.cpp.o -c /home/s5725067/myRepos/scriptEditor/helloWorld.cpp",
+  "file": "/home/s5725067/myRepos/scriptEditor/helloWorld.cpp",
+  "output": "CMakeFiles/helloWorld.dir/helloWorld.cpp.o"
+}
+]

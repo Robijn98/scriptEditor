@@ -1,0 +1,9 @@
+{
+  "cmake.environment": {
+    "DEVKIT_LOCATION": "/home/s5725067/devkitBase"
+  },
+  "cmake.generator": "Unix Makefiles",
+  "files.associations": {
+    "ostream": "cpp"
+  }
+}
