@@ -14,3 +14,17 @@ set(LIBRARIES
 )
 
 build_plugin()
+
+
+
+#maya
+set(MAYA_PLUGINS_DIR "/home/s5725067/devkitBase/plug-ins/maya2023/plug-ins")
+
+if(NOT DEFINED MAYA_PLUGINS_DIR)
+    message(FATAL_ERROR "MAYA_PLUGINS_DIR is not set. Please set it manually or in the environment.")
+else()
+    message(STATUS "MAYA_PLUGINS_DIR is set to: ${MAYA_PLUGINS_DIR}")
+endif()
+
+
+

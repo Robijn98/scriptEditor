@@ -61,8 +61,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh"
-      binary: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh"
+      source: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi"
+      binary: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
       CMAKE_C_FLAGS_DEBUG: "-g"
@@ -75,12 +75,12 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh
+        Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi
         
-        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b0cba/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b0cba.dir/build.make CMakeFiles/cmTC_b0cba.dir/build
-        gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh'
-        Building C object CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o
-        /usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2f8da/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_2f8da.dir/build.make CMakeFiles/cmTC_2f8da.dir/build
+        gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi'
+        Building C object CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o
+        /usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
         clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)
         Target: x86_64-redhat-linux-gnu
         Thread model: posix
@@ -92,7 +92,7 @@ events:
         Selected multilib: .;@m64
         Found CUDA installation: /usr/local/cuda, version 
          (in-process)
-         "/usr/bin/clang-17" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+         "/usr/bin/clang-17" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c
         clang -cc1 version 17.0.6 based upon LLVM 17.0.6 default target x86_64-redhat-linux-gnu
         ignoring nonexistent directory "/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include"
         ignoring nonexistent directory "/include"
@@ -105,9 +105,9 @@ events:
          /usr/local/include
          /usr/include
         End of search list.
-        Linking C executable cmTC_b0cba
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0cba.dir/link.txt --verbose=1
-        /usr/bin/clang  -v CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -o cmTC_b0cba 
+        Linking C executable cmTC_2f8da
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2f8da.dir/link.txt --verbose=1
+        /usr/bin/clang  -v CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -o cmTC_2f8da 
         clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)
         Target: x86_64-redhat-linux-gnu
         Thread model: posix
@@ -118,8 +118,8 @@ events:
         Candidate multilib: 32;@m32
         Selected multilib: .;@m64
         Found CUDA installation: /usr/local/cuda, version 
-         "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_b0cba /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o
-        gmake[1]: Leaving directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh'
+         "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_2f8da /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o
+        gmake[1]: Leaving directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi'
         
       exitCode: 0
   -
@@ -155,12 +155,12 @@ events:
     message: |
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh]
+        ignore line: [Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi]
         ignore line: []
-        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b0cba/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_b0cba.dir/build.make CMakeFiles/cmTC_b0cba.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh']
-        ignore line: [Building C object CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_2f8da/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_2f8da.dir/build.make CMakeFiles/cmTC_2f8da.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi']
+        ignore line: [Building C object CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/clang   -v -MD -MT CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)]
         ignore line: [Target: x86_64-redhat-linux-gnu]
         ignore line: [Thread model: posix]
@@ -175,7 +175,7 @@ events:
         ignore line: [@m64]
         ignore line: [Found CUDA installation: /usr/local/cuda  version ]
         ignore line: [ (in-process)]
-        ignore line: [ "/usr/bin/clang-17" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-JzeGJh -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+        ignore line: [ "/usr/bin/clang-17" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-gwXcKi -ferror-limit 19 -fgnuc-version=4.2.1 -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
         ignore line: [clang -cc1 version 17.0.6 based upon LLVM 17.0.6 default target x86_64-redhat-linux-gnu]
         ignore line: [ignoring nonexistent directory "/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include"]
         ignore line: [ignoring nonexistent directory "/include"]
@@ -188,9 +188,9 @@ events:
         ignore line: [ /usr/local/include]
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
-        ignore line: [Linking C executable cmTC_b0cba]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b0cba.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/clang  -v CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -o cmTC_b0cba ]
+        ignore line: [Linking C executable cmTC_2f8da]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2f8da.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/clang  -v CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -o cmTC_2f8da ]
         ignore line: [clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)]
         ignore line: [Target: x86_64-redhat-linux-gnu]
         ignore line: [Thread model: posix]
@@ -204,7 +204,7 @@ events:
         ignore line: [Selected multilib: .]
         ignore line: [@m64]
         ignore line: [Found CUDA installation: /usr/local/cuda  version ]
-        link line: [ "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_b0cba /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o]
+        link line: [ "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_2f8da /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o]
           arg [/usr/bin/ld] ==> ignore
           arg [--hash-style=gnu] ==> ignore
           arg [--build-id] ==> ignore
@@ -214,7 +214,7 @@ events:
           arg [-dynamic-linker] ==> ignore
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_b0cba] ==> ignore
+          arg [cmTC_2f8da] ==> ignore
           arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
           arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
           arg [/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o] ==> obj [/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o]
@@ -225,7 +225,7 @@ events:
           arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
-          arg [CMakeFiles/cmTC_b0cba.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_2f8da.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [--as-needed] ==> ignore
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -262,8 +262,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy"
-      binary: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy"
+      source: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3"
+      binary: "/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
       CMAKE_CXX_FLAGS_DEBUG: "-g"
@@ -276,12 +276,12 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy
+        Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3
         
-        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a2611/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a2611.dir/build.make CMakeFiles/cmTC_a2611.dir/build
-        gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy'
-        Building CXX object CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_64583/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_64583.dir/build.make CMakeFiles/cmTC_64583.dir/build
+        gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3'
+        Building CXX object CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)
         Target: x86_64-redhat-linux-gnu
         Thread model: posix
@@ -293,7 +293,7 @@ events:
         Selected multilib: .;@m64
         Found CUDA installation: /usr/local/cuda, version 
          (in-process)
-         "/usr/bin/clang++" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13 -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/x86_64-redhat-linux -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/backward -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+         "/usr/bin/clang++" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3 -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13 -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/x86_64-redhat-linux -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/backward -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3 -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
         clang -cc1 version 17.0.6 based upon LLVM 17.0.6 default target x86_64-redhat-linux-gnu
         ignoring nonexistent directory "/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include"
         ignoring nonexistent directory "/include"
@@ -309,9 +309,9 @@ events:
          /usr/local/include
          /usr/include
         End of search list.
-        Linking CXX executable cmTC_a2611
-        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2611.dir/link.txt --verbose=1
-        /usr/bin/clang++  -v CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a2611 
+        Linking CXX executable cmTC_64583
+        /usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64583.dir/link.txt --verbose=1
+        /usr/bin/clang++  -v CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_64583 
         clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)
         Target: x86_64-redhat-linux-gnu
         Thread model: posix
@@ -322,8 +322,8 @@ events:
         Candidate multilib: 32;@m32
         Selected multilib: .;@m64
         Found CUDA installation: /usr/local/cuda, version 
-         "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_a2611 /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o
-        gmake[1]: Leaving directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy'
+         "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_64583 /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o
+        gmake[1]: Leaving directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3'
         
       exitCode: 0
   -
@@ -365,12 +365,12 @@ events:
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy]
+        ignore line: [Change Dir: /home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3]
         ignore line: []
-        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a2611/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_a2611.dir/build.make CMakeFiles/cmTC_a2611.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy']
-        ignore line: [Building CXX object CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s):/usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_64583/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_64583.dir/build.make CMakeFiles/cmTC_64583.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3']
+        ignore line: [Building CXX object CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/clang++   -v -MD -MT CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)]
         ignore line: [Target: x86_64-redhat-linux-gnu]
         ignore line: [Thread model: posix]
@@ -385,7 +385,7 @@ events:
         ignore line: [@m64]
         ignore line: [Found CUDA installation: /usr/local/cuda  version ]
         ignore line: [ (in-process)]
-        ignore line: [ "/usr/bin/clang++" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13 -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/x86_64-redhat-linux -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/backward -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-Sqlpzy -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [ "/usr/bin/clang++" -cc1 -triple x86_64-redhat-linux-gnu -emit-obj -mrelax-all -disable-free -clear-ast-before-backend -disable-llvm-verifier -discard-value-names -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -debugger-tuning=gdb -v -fcoverage-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3 -resource-dir /usr/bin/../lib/clang/17 -dependency-file CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -I/usr/local/cuda-12.5/include -I/usr/local/cuda-12.5/include -I. -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13 -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/x86_64-redhat-linux -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../include/c++/13/backward -internal-isystem /usr/bin/../lib/clang/17/include -internal-isystem /usr/local/include -internal-isystem /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/home/s5725067/myRepos/scriptEditor/build/CMakeFiles/CMakeScratch/TryCompile-5pmkQ3 -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [clang -cc1 version 17.0.6 based upon LLVM 17.0.6 default target x86_64-redhat-linux-gnu]
         ignore line: [ignoring nonexistent directory "/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../x86_64-redhat-linux/include"]
         ignore line: [ignoring nonexistent directory "/include"]
@@ -401,9 +401,9 @@ events:
         ignore line: [ /usr/local/include]
         ignore line: [ /usr/include]
         ignore line: [End of search list.]
-        ignore line: [Linking CXX executable cmTC_a2611]
-        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a2611.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/clang++  -v CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_a2611 ]
+        ignore line: [Linking CXX executable cmTC_64583]
+        ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64583.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/clang++  -v CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_64583 ]
         ignore line: [clang version 17.0.6 (Red Hat 17.0.6-1.module+el8.10.0+20808+e12784c0)]
         ignore line: [Target: x86_64-redhat-linux-gnu]
         ignore line: [Thread model: posix]
@@ -417,7 +417,7 @@ events:
         ignore line: [Selected multilib: .]
         ignore line: [@m64]
         ignore line: [Found CUDA installation: /usr/local/cuda  version ]
-        link line: [ "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_a2611 /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o]
+        link line: [ "/usr/bin/ld" --hash-style=gnu --build-id --eh-frame-hdr -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_64583 /lib/../lib64/crt1.o /lib/../lib64/crti.o /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o -L/usr/bin/../lib/clang/17/lib/x86_64-redhat-linux-gnu -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13 -L/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/lib -L/usr/lib CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtend.o /lib/../lib64/crtn.o]
           arg [/usr/bin/ld] ==> ignore
           arg [--hash-style=gnu] ==> ignore
           arg [--build-id] ==> ignore
@@ -427,7 +427,7 @@ events:
           arg [-dynamic-linker] ==> ignore
           arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_a2611] ==> ignore
+          arg [cmTC_64583] ==> ignore
           arg [/lib/../lib64/crt1.o] ==> obj [/lib/../lib64/crt1.o]
           arg [/lib/../lib64/crti.o] ==> obj [/lib/../lib64/crti.o]
           arg [/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o] ==> obj [/opt/rh/gcc-toolset-13/root/usr/lib/gcc/x86_64-redhat-linux/13/crtbegin.o]
@@ -438,7 +438,7 @@ events:
           arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
           arg [-L/lib] ==> dir [/lib]
           arg [-L/usr/lib] ==> dir [/usr/lib]
-          arg [CMakeFiles/cmTC_a2611.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_64583.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]

@@ -13,7 +13,7 @@ class helloWorld : public MPxCommand
 };
 
 MStatus helloWorld::doIt( const MArgList& args ) {
-    cout << "im a plugIn" << args.asString( 0 ).asChar() << endl;
+    cout << "im a plugIn, hi" << args.asString( 0 ).asChar() << endl;
     return MS::kSuccess;
 }
 
@@ -29,6 +29,6 @@ MStatus initializePlugin( MObject obj ) {
 
 MStatus uninitializePlugin( MObject obj ) {
     MFnPlugin plugin( obj );
-    plugin.deregisterCommand( "HelloWorld" );
+    plugin.deregisterCommand( "HelloWorld");
     return MS::kSuccess;
 }
