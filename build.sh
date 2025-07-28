@@ -1,29 +1,34 @@
 #!/bin/bash
+
+# Fail on error
 set -e
 
-# Set plugin output directory
-MAYA_PLUGINS_DIR="$HOME/devkitBase/plug-ins/maya2023/plug-ins"
+# Default to DEVKIT_LOCATION if not set
+if [ -z "$DEVKIT_LOCATION" ]; then
+    export DEVKIT_LOCATION="$HOME/devkitBase"
+    echo "DEVKIT_LOCATION not set, using default: $DEVKIT_LOCATION"
+fi
 
-# Print directories
-CURRENT_DIR=$(pwd)
-echo "Current directory: $CURRENT_DIR"
+# Maya plugin output directory
+MAYA_PLUGINS_DIR="$DEVKIT_LOCATION/plug-ins/maya2023/plug-ins"
+PLUGIN_NAME="MinimalQtPlugin"
+PLUGIN_FILE="${PLUGIN_NAME}.so"
+
+# Print directory info
+echo "Current directory: $(pwd)"
 echo "Maya plugins directory: $MAYA_PLUGINS_DIR"
 
-# Check if target directory exists
+# Ensure plugin output dir exists
 if [ ! -d "$MAYA_PLUGINS_DIR" ]; then
     echo "Error: Directory does not exist: $MAYA_PLUGINS_DIR"
     exit 1
 fi
 
-# Configure and build the plugin
-cmake -S . -B build
-cmake --build build
+# Configure and build
+cmake -S . -B build || { echo "CMake configuration failed"; exit 1; }
+cmake --build build || { echo "Build failed"; exit 1; }
 
-# Define expected output file (adjust if needed)
-PLUGIN_NAME="helloWorld"
-PLUGIN_FILE="${PLUGIN_NAME}.so"
-
-# Check if plugin file exists
+# Validate plugin file
 if [ ! -f "build/${PLUGIN_FILE}" ]; then
     echo "Error: Plugin file not found: build/${PLUGIN_FILE}"
     exit 1
@@ -31,4 +36,4 @@ fi
 
 # Copy plugin to Maya plugins directory
 cp "build/${PLUGIN_FILE}" "$MAYA_PLUGINS_DIR"
-echo "Plugin ${PLUGIN_FILE} copied to $MAYA_PLUGINS_DIR"
+echo "✅ Plugin ${PLUGIN_FILE} copied to: $MAYA_PLUGINS_DIR"

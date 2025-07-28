@@ -1,30 +1,33 @@
-cmake_minimum_required(VERSION 3.22.1)
+cmake_minimum_required(VERSION 3.15)
+project(MayaQtPlugin)
 
-set(PROJECT_NAME helloWorld)
-project(${PROJECT_NAME})
+# Get Maya SDK path from environment
+set(MAYA_LOCATION $ENV{MAYA_LOCATION})
 
-include($ENV{DEVKIT_LOCATION}/cmake/pluginEntry.cmake)
+# Find Qt5 Widgets
+find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-set(SOURCE_FILES
-    helloWorld.cpp
+# Include Maya headers and Qt headers
+include_directories(
+    ${MAYA_LOCATION}/include
+    ${Qt5Widgets_INCLUDE_DIRS}
 )
 
-set(LIBRARIES
-    OpenMaya Foundation
+# Add Maya lib directory to linker search path
+link_directories(${MAYA_LOCATION}/lib)
+
+# Build shared library
+add_library(MayaQtPlugin SHARED main.cpp)
+
+# Link against Maya shared libs and Qt Widgets
+target_link_libraries(MayaQtPlugin
+    Foundation
+    OpenMaya
+    Qt5::Widgets
 )
 
-build_plugin()
-
-
-
-#maya
-set(MAYA_PLUGINS_DIR "/home/s5725067/devkitBase/plug-ins/maya2023/plug-ins")
-
-if(NOT DEFINED MAYA_PLUGINS_DIR)
-    message(FATAL_ERROR "MAYA_PLUGINS_DIR is not set. Please set it manually or in the environment.")
-else()
-    message(STATUS "MAYA_PLUGINS_DIR is set to: ${MAYA_PLUGINS_DIR}")
-endif()
-
-
-
+# Set output name and suffix for Linux shared object plugin
+set_target_properties(MayaQtPlugin PROPERTIES
+    PREFIX "lib"
+    SUFFIX ".so"
+)

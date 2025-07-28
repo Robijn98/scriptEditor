@@ -1,9 +1,26 @@
 {
-  "cmake.environment": {
-    "DEVKIT_LOCATION": "/home/s5725067/devkitBase"
-  },
-  "cmake.generator": "Unix Makefiles",
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "/usr/autodesk/maya2023/include",
+        "/usr/autodesk/maya2023/include/maya",
+        "/home/s5725067/maya-local/qt_5.15.2",
+        "/home/s5725067/maya-local/qt_5.15.2/QtWidgets",
+        "/home/s5725067/maya-local/qt_5.15.2/QtCore",
+        "/usr/include",
+        "/home/s5725067/devkitBase/include"
+      ],
+      "defines": [],
+      "compilerPath": "/usr/bin/g++",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4,
   "files.associations": {
-    "ostream": "cpp"
+    "qvboxlayout": "cpp"
   }
 }
