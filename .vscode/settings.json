@@ -1,9 +1,27 @@
 {
-  "cmake.environment": {
-    "DEVKIT_LOCATION": "/home/s5725067/devkitBase"
-  },
-  "cmake.generator": "Unix Makefiles",
-  "files.associations": {
-    "ostream": "cpp"
-  }
+  "configurations": [
+    {
+      "name": "Linux",
+      "includePath": [
+        "${workspaceFolder}/**",
+
+        // Maya devkit (adjust if needed)
+        "/home/s5725067/devkitBase/include",
+
+        // Qt 5.15.2 - full include hierarchy
+        "/opt/Qt/5.15.2/gcc_64/include",
+        "/opt/Qt/5.15.2/gcc_64/include/QtCore",
+        "/opt/Qt/5.15.2/gcc_64/include/QtWidgets",
+        "/opt/Qt/5.15.2/gcc_64/include/QtGui"
+      ],
+      "defines": [
+        "LINUX"
+      ],
+      "compilerPath": "/usr/bin/g++",
+      "cStandard": "c11",
+      "cppStandard": "c++17",
+      "intelliSenseMode": "linux-gcc-x64"
+    }
+  ],
+  "version": 4
 }
