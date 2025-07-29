@@ -3,6 +3,7 @@
     "MAYA_LOCATION": "/home/s5725067/devkitBase"
   },
   "files.associations": {
-    "qpushbutton": "cpp"
+    "qpushbutton": "cpp",
+    "ostream": "cpp"
   }
 }

@@ -21,16 +21,16 @@ void showScriptEditorDock()
         existing->deleteLater();
     }
 
-    QDockWidget* dockWidget = new QDockWidget("PinkMatcha Script Editor", mayaMainWindow);
+    QDockWidget* dockWidget = new QDockWidget("The PinkCoffee Editor", mayaMainWindow);
     dockWidget->setObjectName("ScriptEditorPanel");
 
     ScriptEditorPanel* panel = new ScriptEditorPanel(dockWidget);
     dockWidget->setWidget(panel);
 
-    mayaMainWindow->addDockWidget(Qt::RightDockWidgetArea, dockWidget); // Or any side you want
+    mayaMainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidget); 
     dockWidget->show();
     dockWidget->raise();
     dockWidget->setFocus();
 
-    std::cout << "Script Editor Dock shown dockieboy" << std::endl;
+    std::cout << "Script Editor" << std::endl;
 }
