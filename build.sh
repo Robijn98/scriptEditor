@@ -11,7 +11,7 @@ fi
 
 # Maya plugin output directory
 MAYA_PLUGINS_DIR="$DEVKIT_LOCATION/plug-ins/maya2023/plug-ins"
-PLUGIN_NAME="MinimalQtPlugin"
+PLUGIN_NAME="libMayaQtPlugin"
 PLUGIN_FILE="${PLUGIN_NAME}.so"
 
 # Print directory info
