@@ -25,7 +25,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-# Source files (no .h or .ui in SOURCES!)
+# Source files
 set(SOURCES
     main.cpp
     src/scriptEditorUtils.cpp
@@ -42,6 +42,7 @@ set(SOURCES
     src/scriptEditor.cpp
     src/openTemplate.cpp
     src/searchAndReplace.cpp
+    src/terminal.cpp
 )
 
 set(HEADERS
@@ -61,6 +62,7 @@ set(HEADERS
     include/openTemplate.h
     include/searchAndReplace.h
     include/editCommand.h
+    include/terminal.h
 
 )
 
@@ -101,6 +103,16 @@ target_link_libraries(MayaQtPlugin
     Qt5::Gui
 
 )
+
+
+#copy syntax highlighting files to the build directory
+add_custom_target(CopySyntaxFiles ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/syntaxLists
+    ${CMAKE_CURRENT_BINARY_DIR}/syntaxLists
+    COMMENT "Copying syntax highlighting files to build directory"
+)
+
 
 # Set output plugin .so name
 set_target_properties(MayaQtPlugin PROPERTIES

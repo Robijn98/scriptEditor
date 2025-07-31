@@ -34,6 +34,14 @@ if [ ! -f "build/${PLUGIN_FILE}" ]; then
     exit 1
 fi
 
+
+if [ ! -f "build/${PLUGIN_FILE}" ]; then
+    echo "Plugin not found. Forcing rebuild..."
+    rm -rf build/
+    cmake -S . -B build || { echo "CMake configuration failed"; exit 1; }
+    cmake --build build --target MayaQtPlugin || { echo "Build failed"; exit 1; }
+fi
+
 # Copy plugin to Maya plugins directory
 cp "build/${PLUGIN_FILE}" "$MAYA_PLUGINS_DIR"
 echo "✅ Plugin ${PLUGIN_FILE} copied to: $MAYA_PLUGINS_DIR"

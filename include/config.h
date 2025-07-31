@@ -10,6 +10,7 @@ public:
 
 
     // Static public variables
+    inline static QString syntaxPath = "/home/s5725067/myRepos/scriptEditor/syntaxLists/maya_cmds_list.txt";
     inline static QString riggingCommandsPath = "/home/s5725067/myRepos/scriptEditorUI/riggingCommands";
     inline static QString riggingTemplatesPath = "/home/s5725067/myRepos/scriptEditorUI/riggingTemplates";
 };

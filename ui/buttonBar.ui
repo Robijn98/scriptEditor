@@ -62,8 +62,8 @@
        <string>...</string>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>../icons/save.png</normaloff>../icons/save.png</iconset>
+       <iconset resource="../resources.qrc">
+        <normaloff>:/icons/icons/save.png</normaloff>:/icons/icons/save.png</iconset>
       </property>
       <property name="iconSize">
        <size>

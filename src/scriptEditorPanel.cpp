@@ -24,15 +24,17 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     editor = new CodeEditor(container);
     commandList = new CommandList();
     editfile = new EditFile(editor);
-    buttonbar = new ButtonBar(editor);
+    terminal = new Terminal(container);
+
+    buttonbar = new ButtonBar(editor, terminal);
     newcommand = new NewCommand(this);
     editcommand = new EditCommand(this);
     highlighter = new Highlighter(editor->document());
-    // opentemplate = new OpenTemplate(editor);
     newtemplate = new NewTemplate();
     edittemplate = new EditTemplate();
 
     QSplitter *scriptEditorSplitter = new QSplitter;
+    QSplitter *terminalSplitter = new QSplitter(Qt::Vertical);
 
     // MAIN LAYOUT
     QHBoxLayout *headerLayout = new QHBoxLayout;
@@ -106,20 +108,33 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     headerLayout->addStretch();
 
+
     //CommandBox
     scriptEditorSplitter->addWidget(commandList);
     scriptEditorSplitter->addWidget(editor);
     scriptEditorSplitter->setSizes({75,250});
 
+    
+    //terminal split
+    QVBoxLayout *baseLayout = new QVBoxLayout();
+    baseLayout->addLayout(headerLayout);
+    baseLayout->addWidget(buttonbar);
+    baseLayout->addWidget(scriptEditorSplitter);
+
+    QWidget *baseWidget = new QWidget();
+    baseWidget->setLayout(baseLayout);
+    
+    terminalSplitter->addWidget(terminal);
+    terminalSplitter->addWidget(baseWidget);
+
     QVBoxLayout *mainLayout = new QVBoxLayout(container);
 
-    mainLayout->addLayout(headerLayout);
-    mainLayout->addWidget(buttonbar);
-    mainLayout->addWidget(scriptEditorSplitter);
-
-    // ----------------------- TEST -----------------------------
-    QPushButton* testButton = new QPushButton(QIcon(":/icons/checkmark.png"), "Test Icon");
-    headerLayout->addWidget(testButton);
+    mainLayout->addWidget(terminalSplitter);
+    
+    // mainLayout->addWidget(terminal);
+    // mainLayout->addLayout(headerLayout);
+    // mainLayout->addWidget(buttonbar);
+    // mainLayout->addWidget(scriptEditorSplitter);
 
     container->setLayout(mainLayout);
     this->setWidget(container);

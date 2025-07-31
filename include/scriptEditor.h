@@ -16,6 +16,7 @@ public:
     QSize sizeHint() const override;
 
 
+
 protected:
     void resizeEvent(QResizeEvent *event) Q_DECL_OVERRIDE;
 

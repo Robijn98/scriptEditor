@@ -2,6 +2,8 @@
 #include "lineNumber.h"
 
 #include <QPainter>
+#include <QDebug>
+#include <iostream>
 
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)

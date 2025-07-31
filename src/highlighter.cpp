@@ -3,6 +3,10 @@
 #include <cstdio>
 #include <string>
 #include <fstream>
+#include "config.h"
+#include <QCoreApplication>
+#include <QDir>
+#include <iostream>
 
 Highlighter::Highlighter(QTextDocument *parent)
     : QSyntaxHighlighter(parent)
@@ -40,8 +44,9 @@ Highlighter::Highlighter(QTextDocument *parent)
     keywordFormat.setFontWeight(QFont::Bold);
 
     std::list<QString> CMDS;
-    CMDS = convertToList("C:/Users/robin/OneDrive/Documents/ScriptEditor/syntaxLists/maya_cmds_list.txt", "listName");
-
+    QString fullPath = Config::syntaxPath;
+    CMDS = convertToList(fullPath.toStdString(), "listName");
+    std::cout<< CMDS.size() << " cmds found in " << fullPath.toStdString() << std::endl;
 
     for (const QString &pattern : CMDS) {
         rule.pattern = QRegularExpression(pattern);
