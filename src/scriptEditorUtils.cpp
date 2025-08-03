@@ -21,7 +21,7 @@ void showScriptEditorDock()
         existing->deleteLater();
     }
 
-    QDockWidget* dockWidget = new QDockWidget("The PinkCoffee Editor", mayaMainWindow);
+    QDockWidget* dockWidget = new QDockWidget("Bes Editor", mayaMainWindow);
     dockWidget->setObjectName("ScriptEditorPanel");
 
     ScriptEditorPanel* panel = new ScriptEditorPanel(dockWidget);
