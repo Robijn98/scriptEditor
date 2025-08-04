@@ -29,7 +29,7 @@ cmake -S . -B build || { echo "CMake configuration failed"; exit 1; }
 cmake --build build || { echo "Build failed"; exit 1; }
 
 # Validate plugin file
-if [ ! -f "build/${PLUGIN_FILE}" ]; then
+if [ ! -f "build/Debug/${PLUGIN_FILE}" ]; then
     echo "Error: Plugin file not found: build/${PLUGIN_FILE}"
     exit 1
 fi
@@ -43,5 +43,5 @@ if [ ! -f "build/${PLUGIN_FILE}" ]; then
 fi
 
 # Copy plugin to Maya plugins directory
-cp "build/${PLUGIN_FILE}" "$MAYA_PLUGINS_DIR"
+cp "build/Debug/${PLUGIN_FILE}" "$MAYA_PLUGINS_DIR"
 echo "✅ Plugin ${PLUGIN_FILE} copied to: $MAYA_PLUGINS_DIR"

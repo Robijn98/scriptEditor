@@ -60,41 +60,42 @@ void ButtonBar::on_templateButton_clicked()
 
 void ButtonBar::on_runButton_clicked()
 {
+    // CodeEditor* editor = editor->currentEditor();
+    if (!editor) {
+        terminal->appendPlainText("Error: No active editor.");
+        return;
+    }
+
     QString code = editor->toPlainText();
     QByteArray codeUtf8 = code.toUtf8();
     MString result;
     MStatus status = MGlobal::executePythonCommand(codeUtf8.constData(), result, true, true);
 
-    // If the code is a print statement, evaluate its argument
-    if (codeUtf8.startsWith("print(")) 
+    // If the code starts with print(...)
+    if (codeUtf8.startsWith("print("))
     {
-        // Extract the inside of print(...)
         QString insidePrint = code.mid(code.indexOf("print(") + 6);
         if (insidePrint.endsWith(")"))
             insidePrint.chop(1);
 
-        // Construct the command to print the expression exactly as is
         QString pyCommand = QString("print(%1)").arg(insidePrint);
-
         MString mayaCommand(pyCommand.toUtf8().constData());
         MString printResult;
+        MStatus printStatus = MGlobal::executePythonCommand(mayaCommand, printResult, true, true);
 
-
+        if (printStatus) {
             terminal->appendPlainText(QString::fromUtf8(printResult.asChar()));
-        
-        else
-        {
+        } else {
             terminal->appendPlainText("Error: Failed to execute print command.");
         }
     }
-
     else
     {
-        if (status) 
+        if (status)
         {
             terminal->appendPlainText("Result: " + QString::fromUtf8(result.asChar()));
-        } 
-        else 
+        }
+        else
         {
             MString error;
             MGlobal::executeCommand("print('Python error caught.')", error);
