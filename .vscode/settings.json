@@ -74,7 +74,8 @@
     "__nullptr": "cpp",
     "locale": "cpp",
     "cinttypes": "cpp",
-    "qtextdocument": "cpp"
+    "qtextdocument": "cpp",
+    "qapplication": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

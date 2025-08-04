@@ -25,14 +25,15 @@ TabScriptEditor::TabScriptEditor(QWidget *parent)
 
 
 
+
 void TabScriptEditor::closeTab()
 {
     QTabWidget* editor = getFocusedTabWidget();
     if (!editor) return;
 
-    if (tabWidgets.size() <= 1) {
-        std::cout << "Cannot close the last editor widget." << std::endl;
-        return;
+    if (editor->count() <= 1) {
+        std::cout << "Cannot close the last tab." << std::endl;
+        return; 
     }
 
     editor->clearFocus();
@@ -110,26 +111,25 @@ QTabWidget* TabScriptEditor::createTabWidget()
 
 connect(tw, &QTabWidget::tabCloseRequested, this, [=](int index) {
     if (tw->tabText(index) == "+") {
-        return;
+        return; // don't allow closing the "+" tab
     }
 
-    QWidget* w = tw->widget(index);
+    QWidget *w = tw->widget(index);
     tw->removeTab(index);
     w->deleteLater();
-
-    // Count how many tabs are user tabs, not including plus
-    int userTabsCount = 0;
-    for (int i = 0; i < tw->count(); ++i) {
-        if (tw->tabText(i) != "+") {
-            ++userTabsCount;
-        }
-    }
-
-    // If no user tabs remain, close the whole tab widget
-    if (userTabsCount == 1) {
-        std::cout << "No user tabs left, removing tab widget." << std::endl;
+    else if (tw->count() > 0) 
+    {
+        std::cout << "Closing last user tab, removing tab widget." << std::endl;
         this->closeTab();
     }
+    //  {
+    //     // Check if only the "+" tab remains after removal
+    //     if (tw->count() == 1 && tw->tabText(0) == "+") {
+    //         std::cout << "Closing last user tab, removing tab widget." << std::endl;
+    //         this->closeTab();
+    //     }
+    // }
+
 });
 
 

@@ -17,16 +17,13 @@ public:
     explicit TabScriptEditor(QWidget *parent = nullptr);
     CodeEditor *currentEditor() const;
     void splitEditor();
-
-public slots:
-    void newTab();
-
+    void closeTab();
+    void newTab(QTabWidget* tw = nullptr);
 
 private:
     QTabWidget *tabWidget;
     Highlighter *highlighter;
     QSplitter *splitter;
-    void newTab(QTabWidget* target);
     QTabWidget* createTabWidget();
     QTabWidget* focusedTabWidget = nullptr;
     QTabWidget* getFocusedTabWidget() const;
