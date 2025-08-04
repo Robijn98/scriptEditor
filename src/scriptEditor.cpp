@@ -4,10 +4,15 @@
 #include <QPainter>
 #include <QDebug>
 #include <iostream>
-
+#include <QFont>
 
 CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
+
+    QFont font = this->font();
+    font.setPointSize(10);  // start font size
+    this->setFont(font);
+
     lineNumberArea = new LineNumberArea(this);
 
     connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));
@@ -90,5 +95,18 @@ void CodeEditor::lineNumberAreaPaintEvent(QPaintEvent *event)
         top = bottom;
         bottom = top + (int) blockBoundingRect(block).height();
         ++blockNumber;
+    }
+}
+
+void CodeEditor::wheelEvent(QWheelEvent *event) {
+    if (event->modifiers() & Qt::ControlModifier) {
+        if (event->angleDelta().y() > 0) {
+            zoomIn();
+        } else {
+            zoomOut();
+        }
+        event->accept();
+    } else {
+        QPlainTextEdit::wheelEvent(event);
     }
 }

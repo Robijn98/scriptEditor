@@ -5,6 +5,7 @@
 #include <QDir>
 
 #include "scriptEditor.h"
+#include "tabScriptEditor.h"
 
 namespace Ui {
 class OpenTemplate;
@@ -20,7 +21,7 @@ class OpenTemplate : public QDialog
     Q_OBJECT
 
 public:
-    explicit OpenTemplate(CodeEditor* editor, TemplateMode mode, QWidget *parent = nullptr);
+    explicit OpenTemplate(TabScriptEditor* tabEditor, TemplateMode mode, QWidget *parent = nullptr);
     ~OpenTemplate();
     void loadList();
     void removeTemplate();
@@ -39,7 +40,9 @@ private:
     void populateList(std::list<QString> commandList);
     void loadTemplate(QString fileName, QDir dir);
     TemplateMode mode;
+    TabScriptEditor* tabEditor;
 
+    CodeEditor* currentEditor() const;
 };
 
 #endif // OPENTEMPLATE_H

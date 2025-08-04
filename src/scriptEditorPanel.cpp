@@ -187,14 +187,13 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     commandList->setStyleSheet(Style::listStyle);
 
+    tabMenu->setStyleSheet(Style::menuStyle);
+
 
 }
 
 
-// void ScriptEditorPanel::temp()
-// {
-//     std::cout<<"temporary defintion/n";
-// }
+
 
 CodeEditor* ScriptEditorPanel::currentEditor() const
 {
@@ -223,7 +222,7 @@ void ScriptEditorPanel::openTemplate()
     CodeEditor* editor = currentEditor();
     if (!editor) return;
 
-    OpenTemplate* opentemplate = new OpenTemplate(editor, TemplateMode::Load);
+    OpenTemplate* opentemplate = new OpenTemplate(tabEditor, TemplateMode::Load);
     opentemplate->loadList();
     opentemplate->show();
     opentemplate->raise();
@@ -250,7 +249,7 @@ void ScriptEditorPanel::removeTemplate()
     CodeEditor* editor = currentEditor();
     if (!editor) return;
 
-    OpenTemplate* opentemplate = new OpenTemplate(editor, TemplateMode::Remove);
+    OpenTemplate* opentemplate = new OpenTemplate(tabEditor, TemplateMode::Remove);
     opentemplate->loadList();
     opentemplate->show();
     opentemplate->raise();

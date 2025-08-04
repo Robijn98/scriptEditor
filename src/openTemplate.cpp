@@ -7,12 +7,13 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QDebug>
+#include <iostream>
 
 
-OpenTemplate::OpenTemplate(CodeEditor* editor, TemplateMode mode, QWidget *parent) :
+OpenTemplate::OpenTemplate(TabScriptEditor* tabEditor, TemplateMode mode, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::OpenTemplate),
-    editor(editor)
+    tabEditor(tabEditor)
 {
     ui->setupUi(this);
     this->mode = mode;
@@ -32,8 +33,12 @@ OpenTemplate::~OpenTemplate()
     delete ui;
 }
 
+CodeEditor* OpenTemplate::currentEditor() const
+{
+    if (!tabEditor) return nullptr;
+    return tabEditor->currentEditor();
+}
 
-//read folder content into list, reuse from commandList
 std::list<QString> OpenTemplate::convertToList(QDir dir)
 {
     std::list<QString> listOut;
@@ -47,10 +52,17 @@ std::list<QString> OpenTemplate::convertToList(QDir dir)
         if(name.endsWith(".py", Qt::CaseInsensitive))
         {
             name.chop(3);
+            qDebug() << "Adding template: " << name;
+        }
+        else
+        {
+            qDebug() << "Skipping file: " << name;
+            continue; 
         }
 
         listOut.push_back(name);
     }
+
 
     return listOut;
 }
@@ -68,23 +80,39 @@ void OpenTemplate::populateList(std::list<QString> templateList)
 
 void OpenTemplate::loadTemplate(QString fileName, QDir dir)
 {
-    QString templateString;
-    QString completeFileName = QString("%1/%2.py").arg(dir.path()).arg(fileName);
-
+    CodeEditor* editor = tabEditor->currentEditor();
+    if (!editor) {
+        std::cerr << "ERROR: currentEditor() returned nullptr" << std::endl;
+        return;
+    } else {
+        std::cout << "Current editor is valid." << std::endl;
+    }
+    
+    QString completeFileName = QString("%1/%2").arg(dir.path()).arg(fileName);
     if (completeFileName.isEmpty()) throw std::invalid_argument( "please provide valid filename");
 
     QFile file(completeFileName);
     if (file.open(QIODevice::ReadOnly | QIODevice::Text))
     {
         QTextStream in(&file);
-        editor->setPlainText(in.readAll());
+        QString content = in.readAll();
+        std::cout << "Template content length: " << content.size() << std::endl;
+        
+        editor->setPlainText(content);
+        editor->show();
+        editor->setFocus();
+
         file.close();
+    } else {
+        std::cerr << "ERROR: Could not open template file." << std::endl;
     }
 }
 
+
 void OpenTemplate::on_loadButton_clicked()
 {
-    //qDebug() << "Clicked in mode:" << (mode == TemplateMode::Load ? "Load" : "Remove");
+
+
     if(this->ui->templateList->selectedItems().size() == 0)
     {
         QMessageBox::warning(this, "Invalid Filename", "Please enter a file name");
@@ -95,7 +123,25 @@ void OpenTemplate::on_loadButton_clicked()
     QString fileName = selectedFile->text();
 
     QDir dir(Config::riggingTemplatesPath);
-    QString completeFileName = QString("%1/%2.py").arg(dir.path()).arg(fileName);
+    if (!dir.exists())
+    {
+        QMessageBox::warning(this, "Directory Error", "The templates directory does not exist.");
+        return;
+    }
+
+        // Ensure the file name is valid
+        if (fileName.isEmpty() || fileName.contains(QRegExp("[^a-zA-Z0-9_]")))
+        {
+            QMessageBox::warning(this, "Invalid Filename", "Please enter a valid file name");
+            return;
+        }
+
+    // Construct the complete file name
+    if (!fileName.endsWith(".py", Qt::CaseInsensitive))
+    {
+        fileName.append(".py");
+    }
+    // QString completeFileName = QString("%1/%2.py").arg(dir.path()).arg(fileName);
 
         if (mode == TemplateMode::Load)
         {
@@ -105,7 +151,7 @@ void OpenTemplate::on_loadButton_clicked()
 
         else if (mode == TemplateMode::Remove)
         {
-            QFile::remove(completeFileName);
+            QFile::remove(fileName);
             loadList();
         }
 
@@ -121,15 +167,17 @@ void OpenTemplate::on_cancelButton_clicked()
 
 void OpenTemplate::loadList()
 {
-    while(ui->templateList->count()>0)
-    {
-        ui->templateList->clear();
-    }
-    std::list<QString> templateList;
-    QDir dir(Config::riggingTemplatesPath);
+    ui->templateList->clear();  // Just clear once
 
-    templateList = convertToList(dir);
+    QDir dir(Config::riggingTemplatesPath);
+    qDebug() << "Templates path:" << Config::riggingTemplatesPath;
+    qDebug() << "Directory exists:" << dir.exists();
+
+    if (!dir.exists()) {
+        QMessageBox::warning(this, "Directory Error", "The templates directory does not exist.");
+        return;
+    }
+
+    std::list<QString> templateList = convertToList(dir);
     populateList(templateList);
 }
-
-

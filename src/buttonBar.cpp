@@ -20,7 +20,7 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Terminal* terminal, QWidget* pa
     editfile = new EditFile(tabEditor);
 
     searchandreplace = new SearchAndReplace(tabEditor->currentEditor());
-    edittemplate = new EditTemplate();
+    opentemplate = new OpenTemplate(tabEditor, TemplateMode::Load, this);
 
 }
 
@@ -29,11 +29,12 @@ ButtonBar::~ButtonBar()
 {
     delete ui;
 }
-
 CodeEditor* ButtonBar::currentEditor() const
 {
-    return qobject_cast<CodeEditor*>(tabWidget->currentWidget());
+    if (!tabEditor) return nullptr;
+    return tabEditor->currentEditor();
 }
+
 
 
 void ButtonBar::on_saveButton_clicked()
@@ -58,9 +59,16 @@ void ButtonBar::on_searchAndReplaceButton_clicked()
 
 void ButtonBar::on_templateButton_clicked()
 {
-    edittemplate->show();
-    edittemplate->raise();
-    edittemplate->setFocus();
+{
+    CodeEditor* editor = currentEditor();
+    if (!editor) return;
+
+    OpenTemplate* opentemplate = new OpenTemplate(tabEditor, TemplateMode::Load, this);
+    opentemplate->loadList();
+    opentemplate->show();
+    opentemplate->raise();
+    opentemplate->setFocus();
+}
 }
 
 void ButtonBar::on_runButton_clicked()

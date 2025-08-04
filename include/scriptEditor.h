@@ -23,7 +23,7 @@ protected:
 private slots:
     void updateLineNumberAreaWidth(int newBlockCount);
     void updateLineNumberArea(const QRect &, int);
-
+    void wheelEvent(QWheelEvent *event) override;
 private:
     QWidget *lineNumberArea;
 };

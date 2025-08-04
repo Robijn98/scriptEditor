@@ -6,7 +6,7 @@
 
 #include "editFile.h"
 #include "searchAndReplace.h"
-#include "editTemplate.h"
+#include "openTemplate.h"
 #include "scriptEditor.h"
 #include "terminal.h"
 #include "tabScriptEditor.h"
@@ -41,7 +41,7 @@ private:
     Ui::ButtonBar *ui;
     EditFile *editfile;
     SearchAndReplace *searchandreplace;
-    EditTemplate *edittemplate;
+    OpenTemplate *opentemplate;
     QTabWidget* tabWidget;
     CodeEditor* currentEditor() const;
     TabScriptEditor* tabEditor;

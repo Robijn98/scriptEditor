@@ -72,6 +72,9 @@
     "typeinfo": "cpp",
     "variant": "cpp",
     "__nullptr": "cpp",
-    "locale": "cpp"
-  }
+    "locale": "cpp",
+    "cinttypes": "cpp",
+    "qtextdocument": "cpp"
+  },
+  "C_Cpp.errorSquiggles": "disabled"
 }
