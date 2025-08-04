@@ -8,5 +8,7 @@
         <file>icons/searchReplace.png</file>
         <file>icons/template.png</file>
         <file>icons/play.png</file>
+        <file>icons/close.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

@@ -4,11 +4,11 @@
 #include "maya/MGlobal.h"
 
 
-ButtonBar::ButtonBar(CodeEditor* editor, Terminal* terminal, QWidget* parent)
+ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Terminal* terminal, QWidget* parent)
     : QWidget(parent),
-      ui(new Ui::ButtonBar),
-      editor(editor),
-      terminal(terminal)
+    ui(new Ui::ButtonBar),
+    tabEditor(tabEditor),
+    terminal(terminal)
 {
     ui->setupUi(this);
     ui->saveButton->setStyleSheet(Style::iconButtonStyle);
@@ -17,9 +17,9 @@ ButtonBar::ButtonBar(CodeEditor* editor, Terminal* terminal, QWidget* parent)
     ui->searchAndReplaceButton->setStyleSheet(Style::iconButtonStyle);
     ui->templateButton->setStyleSheet(Style::iconButtonStyle);
 
-    editfile = new EditFile(editor);
+    editfile = new EditFile(tabEditor);
 
-    searchandreplace = new SearchAndReplace(editor);
+    searchandreplace = new SearchAndReplace(tabEditor->currentEditor());
     edittemplate = new EditTemplate();
 
 }
@@ -28,6 +28,11 @@ ButtonBar::ButtonBar(CodeEditor* editor, Terminal* terminal, QWidget* parent)
 ButtonBar::~ButtonBar()
 {
     delete ui;
+}
+
+CodeEditor* ButtonBar::currentEditor() const
+{
+    return qobject_cast<CodeEditor*>(tabWidget->currentWidget());
 }
 
 
@@ -60,7 +65,7 @@ void ButtonBar::on_templateButton_clicked()
 
 void ButtonBar::on_runButton_clicked()
 {
-    // CodeEditor* editor = editor->currentEditor();
+    CodeEditor* editor = currentEditor();
     if (!editor) {
         terminal->appendPlainText("Error: No active editor.");
         return;
@@ -71,7 +76,6 @@ void ButtonBar::on_runButton_clicked()
     MString result;
     MStatus status = MGlobal::executePythonCommand(codeUtf8.constData(), result, true, true);
 
-    // If the code starts with print(...)
     if (codeUtf8.startsWith("print("))
     {
         QString insidePrint = code.mid(code.indexOf("print(") + 6);

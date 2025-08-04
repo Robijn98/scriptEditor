@@ -8,14 +8,14 @@
 #include <QFileDialog>
 #include <QTextStream>
 
-#include "scriptEditor.h"
+#include "tabScriptEditor.h"
 
 class EditFile : public QObject
 {
     Q_OBJECT
 
 public:
-    EditFile(CodeEditor* editor, QObject *parent = nullptr);
+    EditFile(TabScriptEditor* tabEditor,  QObject *parent = nullptr);
 
     void newFile();
     void openFile();
@@ -23,7 +23,7 @@ public:
     void exitApp();
 
 private:
-    CodeEditor *editor;
+    TabScriptEditor* tabEditor;
 };
 
 #endif // EDITFILE_H

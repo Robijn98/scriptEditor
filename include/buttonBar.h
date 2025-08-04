@@ -9,6 +9,7 @@
 #include "editTemplate.h"
 #include "scriptEditor.h"
 #include "terminal.h"
+#include "tabScriptEditor.h"
 
 namespace Ui {
 class ButtonBar;
@@ -19,7 +20,7 @@ class ButtonBar : public QWidget
     Q_OBJECT
 
 public:
-    explicit ButtonBar(CodeEditor* editor, Terminal *terminal, QWidget *parent = nullptr);
+explicit ButtonBar(TabScriptEditor* tabEditor, Terminal *terminal, QWidget *parent = nullptr);
     ~ButtonBar();
 
 
@@ -41,7 +42,9 @@ private:
     EditFile *editfile;
     SearchAndReplace *searchandreplace;
     EditTemplate *edittemplate;
-    CodeEditor *editor;
+    QTabWidget* tabWidget;
+    CodeEditor* currentEditor() const;
+    TabScriptEditor* tabEditor;
     Terminal *terminal;
 };
 

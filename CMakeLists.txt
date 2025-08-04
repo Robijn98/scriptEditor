@@ -43,6 +43,7 @@ set(SOURCES
     src/openTemplate.cpp
     src/searchAndReplace.cpp
     src/terminal.cpp
+    src/tabScriptEditor.cpp
 )
 
 set(HEADERS
@@ -63,6 +64,7 @@ set(HEADERS
     include/searchAndReplace.h
     include/editCommand.h
     include/terminal.h
+    include/tabScriptEditor.h
 
 )
 

@@ -61,6 +61,36 @@ public:
         " background-color: #fcd2eb;"
         "}";
 
+    inline static QString tabStyle =  R"(
+    QTabBar::tab {
+        background: black;
+        border: 2px solid #e36db4;
+        border-radius: 5px;
+        color: #e36db4;
+        font: bold 16px;
+        padding: 6px 12px;
+        margin: 2px;
+    }
+
+    QTabBar::tab:selected {
+        background: #1a1a1a;
+    }
+
+    QTabBar::tab:hover {
+        background: #2a2a2a;
+    }
+
+    /* Close button styling */
+    QTabBar::close-button {
+        image: url(:/icons/icons/close.png);
+        subcontrol-position: right;
+        subcontrol-origin: padding;
+        width: 16px;
+        height: 16px;
+        margin: 2px;
+    }
+)";
+
 };
 
 

@@ -4,7 +4,6 @@
 #include "style.h"
 
 #include <iostream>
-
 #include <QWidget>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
@@ -13,28 +12,33 @@
 #include <QTextStream>
 #include <QApplication>
 #include <QSplitter>
+#include <QToolButton>
+#include <QMenu>
+#include <QDir>
+
 
 ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     : QDockWidget(parent)
 {
     QWidget *container = new QWidget(this);
-
+    
+    tabEditor = new TabScriptEditor(container);
 
     // ----------------ADD ALL PARTS ----------------
-    editor = new CodeEditor(container);
+    // editor = new CodeEditor(container);
     commandList = new CommandList();
-    editfile = new EditFile(editor);
+    editfile = new EditFile(tabEditor);
     terminal = new Terminal(container);
 
-    buttonbar = new ButtonBar(editor, terminal);
+    buttonbar = new ButtonBar(tabEditor, terminal);
     newcommand = new NewCommand(this);
     editcommand = new EditCommand(this);
-    highlighter = new Highlighter(editor->document());
+    // highlighter = new Highlighter(editor->document());
     newtemplate = new NewTemplate();
     edittemplate = new EditTemplate();
 
     QSplitter *scriptEditorSplitter = new QSplitter;
-    QSplitter *terminalSplitter = new QSplitter(Qt::Vertical);
+    // QSplitter *terminalSplitter = new QSplitter(Qt::Vertical);
 
     // MAIN LAYOUT
     QHBoxLayout *headerLayout = new QHBoxLayout;
@@ -96,6 +100,17 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     templateMenu->addAction("Remove Template", this, &ScriptEditorPanel::removeTemplate);
 
 
+
+    //--------------------------TAB MENU ---------------------------------------------------
+    QToolButton *tabButton = new QToolButton();
+    tabButton->setText("tabs");
+    QMenu *tabMenu = new QMenu();
+    tabButton->setMenu(tabMenu);
+    tabButton->setPopupMode(QToolButton::InstantPopup);
+
+    tabMenu->addAction("split screen",tabEditor ,&TabScriptEditor::splitEditor);
+
+
     //---------------------- LAYOUT -----------------------------
 
     fileButton->setMinimumWidth(80);
@@ -105,64 +120,51 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     headerLayout->addWidget(fileButton);
     headerLayout->addWidget(commandButton);
     headerLayout->addWidget(templateButton);
+    headerLayout->addWidget(tabButton);
 
     headerLayout->addStretch();
 
 
-    //CommandBox
+    // Editor Splitter Layout
     scriptEditorSplitter->addWidget(commandList);
-    scriptEditorSplitter->addWidget(editor);
+    scriptEditorSplitter->addWidget(tabEditor);
     scriptEditorSplitter->setSizes({75,250});
 
     
     //terminal split
-    QVBoxLayout *baseLayout = new QVBoxLayout();
-    baseLayout->addLayout(headerLayout);
-    baseLayout->addWidget(buttonbar);
-    baseLayout->addWidget(scriptEditorSplitter);
-
-    QWidget *baseWidget = new QWidget();
-    baseWidget->setLayout(baseLayout);
-    
-    terminalSplitter->addWidget(terminal);
-    terminalSplitter->addWidget(baseWidget);
-
     QVBoxLayout *mainLayout = new QVBoxLayout(container);
-
-    mainLayout->addWidget(terminalSplitter);
-    
-    // mainLayout->addWidget(terminal);
-    // mainLayout->addLayout(headerLayout);
-    // mainLayout->addWidget(buttonbar);
-    // mainLayout->addWidget(scriptEditorSplitter);
+    mainLayout->addLayout(headerLayout);
+    mainLayout->addWidget(buttonbar);
+    mainLayout->addWidget(scriptEditorSplitter);
 
     container->setLayout(mainLayout);
     this->setWidget(container);
 
 
-    //---------------------- COMMAND LIST -----------------------------
+    //---------------------- COMMAND SELECTION -----------------------------
     QDir dir(Config::riggingCommandsPath);
+    connect(commandList, &CommandList::commandSelected, this, [=](const QString &text) {
+        CodeEditor* editor = currentEditor();
+        if (!editor)
+        {
+            std::cout<<"no";
+            return;
+        }
 
-    connect(commandList, &CommandList::commandSelected, editor, [=](const QString &text) {
-        //check if you still need to append path
         QString currentText = editor->toPlainText();
         QString sysImport = QString("sys.path.append('%1')").arg(dir.absolutePath());
 
-        if(!currentText.contains("import sys"))
-            {
-                editor->appendPlainText("import sys");
-            }
-        if(!currentText.contains(sysImport))
-            {
-                editor->appendPlainText(sysImport);
-                editor->appendPlainText("\n");
-            }
+        if (!currentText.contains("import sys")) {
+            editor->appendPlainText("import sys");
+        }
+
+        if (!currentText.contains(sysImport)) {
+            editor->appendPlainText(sysImport);
+            editor->appendPlainText("\n");
+        }
 
         editor->appendPlainText(text);
     });
-
-
-
 
     //------------------------------- STYLE -------------------------------
     container->setStyleSheet(Style::containerStyle);
@@ -174,6 +176,8 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     templateButton->setStyleSheet(Style::buttonStyle);
 
+    tabButton->setStyleSheet(Style::buttonStyle);
+
     //menu
     commandMenu->setStyleSheet(Style::menuStyle);
 
@@ -183,12 +187,19 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     commandList->setStyleSheet(Style::listStyle);
 
+
 }
 
 
-void ScriptEditorPanel::temp()
+// void ScriptEditorPanel::temp()
+// {
+//     std::cout<<"temporary defintion/n";
+// }
+
+CodeEditor* ScriptEditorPanel::currentEditor() const
 {
-    std::cout<<"temporary defintion/n";
+    if (!tabEditor) return nullptr;
+    return tabEditor->currentEditor();
 }
 
 
@@ -209,6 +220,9 @@ void ScriptEditorPanel::editCommand()
 
 void ScriptEditorPanel::openTemplate()
 {
+    CodeEditor* editor = currentEditor();
+    if (!editor) return;
+
     OpenTemplate* opentemplate = new OpenTemplate(editor, TemplateMode::Load);
     opentemplate->loadList();
     opentemplate->show();
@@ -233,6 +247,9 @@ void ScriptEditorPanel::editTemplate()
 
 void ScriptEditorPanel::removeTemplate()
 {
+    CodeEditor* editor = currentEditor();
+    if (!editor) return;
+
     OpenTemplate* opentemplate = new OpenTemplate(editor, TemplateMode::Remove);
     opentemplate->loadList();
     opentemplate->show();
