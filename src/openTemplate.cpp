@@ -141,7 +141,8 @@ void OpenTemplate::on_loadButton_clicked()
     {
         fileName.append(".py");
     }
-    // QString completeFileName = QString("%1/%2.py").arg(dir.path()).arg(fileName);
+    
+    QString completeFileName = QString("%1/%2").arg(dir.path()).arg(fileName);
 
         if (mode == TemplateMode::Load)
         {
@@ -151,7 +152,7 @@ void OpenTemplate::on_loadButton_clicked()
 
         else if (mode == TemplateMode::Remove)
         {
-            QFile::remove(fileName);
+            QFile::remove(completeFileName);
             loadList();
         }
 

@@ -32,5 +32,5 @@ void showScriptEditorDock()
     dockWidget->raise();
     dockWidget->setFocus();
 
-    std::cout << "Say Hello to my little Script Editor" << std::endl;
+    std::cout << "Opening Script Editor" << std::endl;
 }

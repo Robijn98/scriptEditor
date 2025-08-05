@@ -94,7 +94,7 @@ QString CommandList::commandDef(QString fileName, QDir dir)
             if (lines[i].trimmed() == "#CLASS AND FUNCTION") {
                 QString nextLine = lines[i + 1].trimmed();
                 if (nextLine.startsWith("#") && nextLine.contains("(") && nextLine.contains(")")) {
-                    QString functionCall = nextLine.mid(1).trimmed(); // remove '#'
+                    QString functionCall = nextLine.mid(1).trimmed(); // Remove the leading '#'
                     commandDef.append(functionCall + "\n\n");
                     classAndFunctionFound = true;
                     break; // stop after first match
@@ -114,7 +114,7 @@ QString CommandList::commandDef(QString fileName, QDir dir)
                 QRegularExpressionMatch match = re.match(line);
                 if (match.hasMatch()) {
                     QString funcSignature = match.captured(1);
-                    commandDef.append(funcSignature + "\n");
+                    commandDef.append(fileName + "." + funcSignature + "\n");
                 }
             }
         }

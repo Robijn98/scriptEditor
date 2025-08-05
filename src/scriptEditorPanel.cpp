@@ -132,9 +132,20 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     
     //terminal split
     QVBoxLayout *mainLayout = new QVBoxLayout(container);
-    mainLayout->addLayout(headerLayout);
-    mainLayout->addWidget(buttonbar);
-    mainLayout->addWidget(scriptEditorSplitter);
+    QVBoxLayout *baseLayout = new QVBoxLayout();
+
+    baseLayout->addLayout(headerLayout);
+    baseLayout->addWidget(buttonbar);
+    baseLayout->addWidget(scriptEditorSplitter);
+
+    QSplitter *terminalSplitter = new QSplitter(Qt::Vertical);
+    terminalSplitter->addWidget(terminal);
+    //wrap base into a widget
+    QWidget *baseWidget = new QWidget();
+    baseWidget->setLayout(baseLayout);
+    terminalSplitter->addWidget(baseWidget);
+
+    mainLayout->addWidget(terminalSplitter);
 
     container->setLayout(mainLayout);
     this->setWidget(container);
