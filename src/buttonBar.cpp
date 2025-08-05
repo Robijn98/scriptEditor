@@ -80,38 +80,27 @@ void ButtonBar::on_runButton_clicked()
     }
 
     QString code = editor->toPlainText();
-    QByteArray codeUtf8 = code.toUtf8();
-    MString result;
-    MStatus status = MGlobal::executePythonCommand(codeUtf8.constData(), result, true, true);
+    QStringList lines = code.split('\n');
 
-    if (codeUtf8.startsWith("print("))
+    for (const QString& line : lines)
     {
-        QString insidePrint = code.mid(code.indexOf("print(") + 6);
-        if (insidePrint.endsWith(")"))
-            insidePrint.chop(1);
+        if (line.trimmed().isEmpty()) continue;
 
-        QString pyCommand = QString("print(%1)").arg(insidePrint);
-        MString mayaCommand(pyCommand.toUtf8().constData());
-        MString printResult;
-        MStatus printStatus = MGlobal::executePythonCommand(mayaCommand, printResult, true, true);
+        MString result;
+        MStatus status = MGlobal::executePythonCommand(line.toUtf8().constData(), result, true, true);
 
-        if (printStatus) {
-            terminal->appendPlainText(QString::fromUtf8(printResult.asChar()));
-        } else {
-            terminal->appendPlainText("Error: Failed to execute print command.");
-        }
-    }
-    else
-    {
         if (status)
         {
-            terminal->appendPlainText("Result: " + QString::fromUtf8(result.asChar()));
+            // Show the line and its result (if any)
+            QString output = QString::fromUtf8(result.asChar());
+            if (output.isEmpty())
+                output = "(No output)";
+            terminal->appendPlainText(QString("> %1\nResult: %2\n").arg(line).arg(output));
         }
         else
         {
-            MString error;
-            MGlobal::executeCommand("print('Python error caught.')", error);
-            terminal->appendPlainText(QString::fromUtf8(error.asChar()));
+            terminal->appendPlainText(QString("Error executing line: %1").arg(line));
         }
     }
+
 }

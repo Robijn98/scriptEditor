@@ -77,7 +77,9 @@
     "qtextdocument": "cpp",
     "qapplication": "cpp",
     "__hash_table": "cpp",
-    "__tree": "cpp"
+    "__tree": "cpp",
+    "__locale": "cpp",
+    "__string": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
