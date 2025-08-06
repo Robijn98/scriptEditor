@@ -10,7 +10,7 @@
 #include "openTemplate.h"
 #include "newTemplate.h"
 #include "editTemplate.h"
-#include "terminal.h"
+#include "console.h"
 #include "tabScriptEditor.h"
 
 #include <QDockWidget>
@@ -46,7 +46,7 @@ private:
     OpenTemplate *opentemplate;
     NewTemplate *newtemplate;
     EditTemplate *edittemplate;
-    Terminal *terminal;
+    Console *console;
 };
 
 

@@ -28,9 +28,9 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     // editor = new CodeEditor(container);
     commandList = new CommandList();
     editfile = new EditFile(tabEditor);
-    terminal = new Terminal(container);
+    console = new Console(container);
 
-    buttonbar = new ButtonBar(tabEditor, terminal);
+    buttonbar = new ButtonBar(tabEditor, console);
     newcommand = new NewCommand(this);
     editcommand = new EditCommand(this);
     // highlighter = new Highlighter(editor->document());
@@ -130,7 +130,7 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     scriptEditorSplitter->setSizes({75,250});
 
     
-    //terminal split
+    //console split
     QVBoxLayout *mainLayout = new QVBoxLayout(container);
     QVBoxLayout *baseLayout = new QVBoxLayout();
 
@@ -138,14 +138,14 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     baseLayout->addWidget(buttonbar);
     baseLayout->addWidget(scriptEditorSplitter);
 
-    QSplitter *terminalSplitter = new QSplitter(Qt::Vertical);
-    terminalSplitter->addWidget(terminal);
+    QSplitter *consoleSplitter = new QSplitter(Qt::Vertical);
+    consoleSplitter->addWidget(console);
     //wrap base into a widget
     QWidget *baseWidget = new QWidget();
     baseWidget->setLayout(baseLayout);
-    terminalSplitter->addWidget(baseWidget);
+    consoleSplitter->addWidget(baseWidget);
 
-    mainLayout->addWidget(terminalSplitter);
+    mainLayout->addWidget(consoleSplitter);
 
     container->setLayout(mainLayout);
     this->setWidget(container);

@@ -79,7 +79,8 @@
     "__hash_table": "cpp",
     "__tree": "cpp",
     "__locale": "cpp",
-    "__string": "cpp"
+    "__string": "cpp",
+    "qplaintextedit": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

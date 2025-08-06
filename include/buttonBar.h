@@ -8,8 +8,9 @@
 #include "searchAndReplace.h"
 #include "openTemplate.h"
 #include "scriptEditor.h"
-#include "terminal.h"
+#include "console.h"
 #include "tabScriptEditor.h"
+
 
 namespace Ui {
 class ButtonBar;
@@ -20,7 +21,7 @@ class ButtonBar : public QWidget
     Q_OBJECT
 
 public:
-explicit ButtonBar(TabScriptEditor* tabEditor, Terminal *terminal, QWidget *parent = nullptr);
+explicit ButtonBar(TabScriptEditor* tabEditor, Console *console, QWidget *parent = nullptr);
     ~ButtonBar();
 
 
@@ -37,6 +38,10 @@ private slots:
 
     void on_runButton_clicked();
 
+    void on_runPartialButton_clicked();
+
+    void on_clearTerminalButton_clicked();
+
 private:
     Ui::ButtonBar *ui;
     EditFile *editfile;
@@ -45,6 +50,6 @@ private:
     QTabWidget* tabWidget;
     CodeEditor* currentEditor() const;
     TabScriptEditor* tabEditor;
-    Terminal *terminal;
+    Console *console;
 };
 
