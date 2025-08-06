@@ -9,7 +9,6 @@ class Terminal : public QPlainTextEdit
 
     public:
         Terminal(QWidget *parent = nullptr);
-        void printPythonOutput(const QString &output);
 
 
 };

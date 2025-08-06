@@ -2,6 +2,7 @@
 #include <maya/MFnPlugin.h>
 #include <maya/MGlobal.h>
 #include "scriptEditorUtils.h"
+#include <maya/MMessage.h>
 
 class ShowScriptEditorCmd : public MPxCommand
 {
@@ -16,6 +17,9 @@ public:
 // Register the plugin
 MStatus initializePlugin(MObject obj)
 {
+    MStatus status;
+    
+
     MFnPlugin plugin(obj, "YourName", "1.0", "Any");
     plugin.registerCommand("showScriptEditorDock", ShowScriptEditorCmd::creator);
     return MS::kSuccess;
