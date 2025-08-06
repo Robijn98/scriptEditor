@@ -10,9 +10,10 @@ CodeEditor::CodeEditor(QWidget *parent) : QPlainTextEdit(parent)
 {
 
     QFont font = this->font();
-    font.setPointSize(10);  // start font size
+    font.setFamily("Courier New");
+    font.setPointSize(10);
     this->setFont(font);
-
+    
     lineNumberArea = new LineNumberArea(this);
 
     connect(this, SIGNAL(blockCountChanged(int)), this, SLOT(updateLineNumberAreaWidth(int)));

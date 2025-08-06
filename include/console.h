@@ -16,5 +16,6 @@ class Console : public QPlainTextEdit
 
     private:
         CodeEditor* currentEditor() const;
+        void wheelEvent(QWheelEvent *event) override;
 
 };

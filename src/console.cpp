@@ -3,13 +3,18 @@
 #include <QDir>
 #include <QTextStream>
 #include <maya/MGlobal.h>
+#include <QFont>
+
 
 Console::Console(QWidget *parent) : QPlainTextEdit(parent)
 {
     
     QPlainTextEdit::setReadOnly(true);
     QPlainTextEdit::setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
-    return;
+    QFont font = this->font();
+    font.setFamily("Courier New");
+    font.setPointSize(10);
+    this->setFont(font);
 }
 
 
@@ -136,5 +141,19 @@ with open(r"%4", "w", encoding="utf-8") as f_ret:
         }
 
         ++counter;
+    }
+}
+
+
+void Console::wheelEvent(QWheelEvent *event) {
+    if (event->modifiers() & Qt::ControlModifier) {
+        if (event->angleDelta().y() > 0) {
+            zoomIn();
+        } else {
+            zoomOut();
+        }
+        event->accept();
+    } else {
+        QPlainTextEdit::wheelEvent(event);
     }
 }
