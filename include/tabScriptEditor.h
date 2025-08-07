@@ -22,6 +22,9 @@ public:
     void closeAllTabs();
     void renameTab();
 
+signals:
+    void nameChanged();
+
 private:
     QTabWidget *tabWidget;
     Highlighter *highlighter;

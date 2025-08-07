@@ -19,9 +19,11 @@ TabScriptEditor::TabScriptEditor(QWidget *parent)
 
     QTabWidget* tw = createTabWidget();
     splitter->addWidget(tw);
-    // focusedTabWidget = tw;
-
+   
     this->setStyleSheet(Style::tabStyle);
+    this->updateGeometry();
+    this->adjustSize();
+    this->update();
 }
 
 
@@ -238,5 +240,6 @@ void TabScriptEditor::renameTab()
     if (newName.isEmpty()) return;
 
     tw->setTabText(index, newName);
-
+    tw->setTabToolTip(index, newName); 
+    
 }
