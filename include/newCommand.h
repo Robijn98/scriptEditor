@@ -14,6 +14,9 @@ class NewCommand : public QDialog
 public:
     explicit NewCommand(QWidget *parent = nullptr);
     ~NewCommand();
+    
+signals:    
+    void commandAdded();
 
 private slots:
     void on_saveButton_clicked();
@@ -24,6 +27,7 @@ private slots:
 
 private:
     Ui::NewCommand *ui;
+    
 };
 
 #endif // NEWCOMMAND_H

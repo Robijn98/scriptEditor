@@ -17,8 +17,10 @@ public:
     explicit TabScriptEditor(QWidget *parent = nullptr);
     CodeEditor *currentEditor() const;
     void splitEditor();
-    void closeTab();
+    void closeTab(QTabWidget* tabWidget);
     void newTab(QTabWidget* tw = nullptr);
+    void closeAllTabs();
+    void renameTab();
 
 private:
     QTabWidget *tabWidget;

@@ -61,6 +61,8 @@ public:
         " background-color: #fcd2eb;"
         "}";
 
+
+
     inline static QString tabStyle =  R"(
     QTabBar::tab {
         background: black;
@@ -70,6 +72,8 @@ public:
         font: bold 16px;
         padding: 6px 12px;
         margin: 2px;
+        width: auto;
+        height: 18px;
     }
 
     QTabBar::tab:selected {

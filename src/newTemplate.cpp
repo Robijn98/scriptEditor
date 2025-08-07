@@ -61,7 +61,6 @@ void NewTemplate::on_saveTemplateButton_clicked()
     }
 
     this->close();
-
 }
 
 

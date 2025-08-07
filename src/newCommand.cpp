@@ -8,6 +8,7 @@
 #include <QTextStream>
 #include <QFileDialog>
 #include <qmessagebox.h>
+#include <iostream>
 
 NewCommand::NewCommand(QWidget *parent) :
     QDialog(parent),
@@ -32,6 +33,8 @@ NewCommand::NewCommand(QWidget *parent) :
     ui->saveButton->setStyleSheet(Style::buttonStyle);
 
     ui->classCheckBox->setStyleSheet(Style::checkBoxStyle);
+
+
 }
 
 NewCommand::~NewCommand()
@@ -59,7 +62,9 @@ void NewCommand::on_saveButton_clicked()
                                       "A file with that name already exists. Overwrite?",
                                       QMessageBox::Yes | QMessageBox::No);
         if (reply != QMessageBox::Yes)
-            return;
+        {
+        return;
+        }
     }
 
     // Get code from editor
@@ -80,6 +85,7 @@ void NewCommand::on_saveButton_clicked()
         } else {
             QMessageBox::warning(this, "No Class Found", "Class checkbox is checked but no class found in code.");
         }
+
     }
 
     // Write to the file
@@ -94,6 +100,8 @@ void NewCommand::on_saveButton_clicked()
     }
 
     this->close();
+    emit commandAdded();  // Emit signal to notify that a command has been added
+
 }
 
 

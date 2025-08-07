@@ -68,7 +68,9 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     QAction* addAction = commandMenu->addAction("Add new");
     connect(addAction, &QAction::triggered, this, &ScriptEditorPanel::newCommand);
-
+    //connect signal after newCommand is done
+    connect(newcommand, &NewCommand::commandAdded, commandList, &CommandList::refreshList);
+    
     commandMenu->addAction("Edit excisting", this, &ScriptEditorPanel::editCommand);
 
     QAction* renameAction = commandMenu->addAction("Rename");
@@ -108,6 +110,8 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     tabButton->setPopupMode(QToolButton::InstantPopup);
 
     tabMenu->addAction("split screen",tabEditor ,&TabScriptEditor::splitEditor);
+    tabMenu->addAction("close all tabs", tabEditor, &TabScriptEditor::closeAllTabs);
+    tabMenu->addAction("rename tab", tabEditor, &TabScriptEditor::renameTab);
 
 
     //---------------------- LAYOUT -----------------------------
