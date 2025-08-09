@@ -33,4 +33,16 @@ void showScriptEditorDock()
     dockWidget->setFocus();
 
     std::cout << "Opening Script Editor" << std::endl;
+    
+    //loadState();
+    if(auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
+        tabEditor->loadState();
+    }
+    //save on close
+    QObject::connect(dockWidget, &QDockWidget::dockLocationChanged,
+                     panel, [panel]() {
+                         if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
+                             tabEditor->saveState();
+                         }
+                     });
 }

@@ -5,6 +5,7 @@
 #include <QTabWidget>
 #include <QSplitter>
 #include <QPoint>
+#include <QSettings>
 
 #include "scriptEditor.h"
 #include "highlighter.h"
@@ -21,18 +22,23 @@ public:
     void newTab(QTabWidget* tw = nullptr);
     void closeAllTabs();
     void renameTab();
+    void saveState();
+    void loadState();
+    void resetLayout();
 
 signals:
     void nameChanged();
+    void allTabsClosed();
 
 private:
     QTabWidget *tabWidget;
     Highlighter *highlighter;
     QSplitter *splitter;
-    QTabWidget* createTabWidget();
+    QTabWidget* createTabWidget(bool withDefaultTab = true);
     QTabWidget* focusedTabWidget = nullptr;
     QTabWidget* getFocusedTabWidget() const;
     QList<QTabWidget*> tabWidgets;
+    void closeAllTabsInternal();
 
 protected:
     bool eventFilter(QObject* obj, QEvent* event) override;

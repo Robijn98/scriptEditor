@@ -33,6 +33,12 @@ private slots:
     void editTemplate();
     void removeTemplate();
 
+
+protected:
+    void closeEvent(QCloseEvent* event) override;
+
+
+
 private:
     QTabWidget* tabWidget;
     CodeEditor* currentEditor() const;
