@@ -27,6 +27,15 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     searchandreplace = new SearchAndReplace(tabEditor->currentEditor());
     opentemplate = new OpenTemplate(tabEditor, TemplateMode::Load, this);
 
+    //add tooltips
+    ui->saveButton->setToolTip("Save Script");
+    ui->clearButton->setToolTip("Clear Current Editor");
+    ui->runButton->setToolTip("Run Script");
+    ui->searchAndReplaceButton->setToolTip("Search and Replace");
+    ui->templateButton->setToolTip("Open Template");
+    ui->runPartialButton->setToolTip("Run Partial Code");
+    ui->clearTerminalButton->setToolTip("Clear Terminal");
+
 }
 
 
@@ -50,7 +59,12 @@ void ButtonBar::on_saveButton_clicked()
 
 void ButtonBar::on_clearButton_clicked()
 {
-    editfile->newFile();
+    CodeEditor* editor = currentEditor();
+    if (!editor) return;
+
+    // Clear the current editor
+    editor->clear();
+
 }
 
 

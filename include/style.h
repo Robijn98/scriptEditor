@@ -6,6 +6,7 @@
 
 class Style {
 public:
+
     inline static QString buttonStyle =
         "background-color: black;"
         "border-style: solid;"
