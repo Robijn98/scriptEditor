@@ -338,7 +338,7 @@ void TabScriptEditor::loadState()
     restoreGeometry(settings.value("geometry").toByteArray());
 
     // Clear current tabs and widgets
-    closeAllTabsInternal(); // make sure splitter is empty & tabWidgets cleared
+    closeAllTabsInternal(); 
 
     // Read splitter sizes
     QVariant v = settings.value("splitterSizes");
@@ -404,13 +404,15 @@ void TabScriptEditor::loadState()
 }
 
 
+
+
 void TabScriptEditor::resetLayout()
 {
     // open a confirmation dialog
     if (QMessageBox::question(this, "Reset Layout", "Are you sure you want to reset the layout? This will close all tabs and remove all splits, including code") 
     != QMessageBox::Yes) 
     {
-        return; // User cancelled
+        return; 
     }
 
 
