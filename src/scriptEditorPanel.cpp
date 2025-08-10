@@ -111,7 +111,24 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     tabMenu->addAction("split screen",tabEditor ,&TabScriptEditor::splitEditor);
     tabMenu->addAction("close all tabs", tabEditor, &TabScriptEditor::closeAllTabs);
+    //after all tabs are closed, split screen, but only if close all tabs button is clicked
+    
+    //only connect if the close all tabs button was pressed
+    connect(tabEditor, &TabScriptEditor::allTabsClosed, tabEditor, &TabScriptEditor::splitEditor);
+    
     tabMenu->addAction("rename tab", tabEditor, &TabScriptEditor::renameTab);
+
+
+    // //----------------------- SETTINGS MENU ---------------------------------------------------
+    // QToolButton *settingsButton = new QToolButton();
+    // settingsButton->setText("Settings");
+    // QMenu *settingsMenu = new QMenu();
+    // settingsButton->setMenu(settingsMenu);
+    // settingsButton->setPopupMode(QToolButton::InstantPopup);
+
+    // settingsMenu->addAction("Reset layout", tabEditor, &TabScriptEditor::resetLayout);
+    
+
 
 
     //---------------------- LAYOUT -----------------------------
@@ -124,6 +141,7 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     headerLayout->addWidget(commandButton);
     headerLayout->addWidget(templateButton);
     headerLayout->addWidget(tabButton);
+    // headerLayout->addWidget(settingsButton);
 
     headerLayout->addStretch();
 
@@ -181,6 +199,7 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     });
 
     //------------------------------- STYLE -------------------------------
+    
     container->setStyleSheet(Style::containerStyle);
 
     //buttons
@@ -192,6 +211,8 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     tabButton->setStyleSheet(Style::buttonStyle);
 
+    // settingsButton->setStyleSheet(Style::buttonStyle);
+
     //menu
     commandMenu->setStyleSheet(Style::menuStyle);
 
@@ -202,7 +223,8 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     commandList->setStyleSheet(Style::listStyle);
 
     tabMenu->setStyleSheet(Style::menuStyle);
-
+    
+    // settingsMenu->setStyleSheet(Style::menuStyle);
 
 }
 
@@ -268,4 +290,12 @@ void ScriptEditorPanel::removeTemplate()
     opentemplate->show();
     opentemplate->raise();
     opentemplate->setFocus();
+}
+
+void ScriptEditorPanel::closeEvent(QCloseEvent* event)
+{
+    if (auto tabEditor = findChild<TabScriptEditor*>()) {
+        tabEditor->saveState();
+    }
+    QDockWidget::closeEvent(event);
 }

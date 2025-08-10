@@ -39,27 +39,25 @@ void Console::runCode(CodeEditor *editor, bool runPartial)
             return;
         }
     }
+    code = code.replace(QChar(0x2029), QChar('\n'));  // replace paragraph separator with normal newline
 
-    QStringList lines = code.split('\n');
+    // Show the entire code block at once
+    appendPlainText("> " + code);
+
     QString tempDir = QDir::tempPath();
-    int counter = 0;
 
-    for (const QString& line : lines)
-    {
-        QString trimmedLine = line.trimmed();
-        if (trimmedLine.isEmpty()) continue;
+    QString outFile = QString("%1/maya_plugin_out.txt").arg(tempDir);
+    QString errFile = QString("%1/maya_plugin_err.txt").arg(tempDir);
+    QString retFile = QString("%1/maya_plugin_ret.txt").arg(tempDir);
 
-        QString pyCode = trimmedLine;
-        pyCode.replace("\\", "\\\\");
-        pyCode.replace("\"", "\\\"");
-        pyCode.replace("\n", "\\n");
+    // Escape backslashes and quotes and newlines for the Python string
+QString pyCode = code;
+pyCode.replace("'''", "\\'\\'\\'");  // escape triple single quotes in user code
 
-        QString outFile = QString("%1/maya_plugin_out_%2.txt").arg(tempDir).arg(counter);
-        QString errFile = QString("%1/maya_plugin_err_%2.txt").arg(tempDir).arg(counter);
-        QString retFile = QString("%1/maya_plugin_ret_%2.txt").arg(tempDir).arg(counter);
-
-        QString pyWrapper = QString(R"(import sys
+QString pyWrapper = QString(R"(
+import sys
 from io import StringIO
+import traceback
 
 _stdout = sys.stdout
 _stderr = sys.stderr
@@ -68,16 +66,16 @@ sys.stderr = StringIO()
 
 _retval = None
 
+code = '''%1'''
+
 try:
-    _retval = eval("%1")
+    _retval = eval(code)
 except SyntaxError:
     try:
-        exec("%1")
+        exec(code)
     except Exception:
-        import traceback
         traceback.print_exc()
 except Exception:
-    import traceback
     traceback.print_exc()
 
 out = sys.stdout.getvalue()
@@ -97,52 +95,48 @@ with open(r"%4", "w", encoding="utf-8") as f_ret:
         f_ret.write(str(_retval))
 )").arg(pyCode).arg(outFile).arg(errFile).arg(retFile);
 
-        MStatus status = MGlobal::executePythonCommand(pyWrapper.toUtf8().constData(), false, true);
+    MStatus status = MGlobal::executePythonCommand(pyWrapper.toUtf8().constData(), false, true);
 
-        appendPlainText("> " + line);
-
-        if (!status) {
-            appendHtml("<span style='color:red;'>Error executing line.</span>");
-        } else {
-            // Read stdout
-            QFile fOut(outFile);
-            if (fOut.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QTextStream in(&fOut);
-                QString stdoutText = in.readAll();
-                fOut.close();
-                if (!stdoutText.isEmpty())
-                    appendPlainText(stdoutText.trimmed());
-            }
-
-            // Read stderr
-            QFile fErr(errFile);
-            if (fErr.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QTextStream in(&fErr);
-                QString stderrText = in.readAll();
-                fErr.close();
-                if (!stderrText.isEmpty())
-                    appendHtml("<span style='color:red;'>" + stderrText.trimmed() + "</span>");
-            }
-
-            // Read return value
-            QFile fRet(retFile);
-            if (fRet.open(QIODevice::ReadOnly | QIODevice::Text)) {
-                QTextStream in(&fRet);
-                QString retText = in.readAll();
-                fRet.close();
-                if (!retText.isEmpty())
-                    appendHtml("<span style='color:green;'>Return: " + retText.trimmed() + "</span>");
-            }
-
-            // Cleanup
-            QFile::remove(outFile);
-            QFile::remove(errFile);
-            QFile::remove(retFile);
+    if (!status) {
+        appendHtml("<span style='color:white;'>Error executing code.</span>");
+    } else {
+        // Read stdout
+        QFile fOut(outFile);
+        if (fOut.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream in(&fOut);
+            QString stdoutText = in.readAll();
+            fOut.close();
+            if (!stdoutText.isEmpty())
+                appendPlainText(stdoutText.trimmed());
         }
 
-        ++counter;
+        // Read stderr
+        QFile fErr(errFile);
+        if (fErr.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream in(&fErr);
+            QString stderrText = in.readAll();
+            fErr.close();
+            if (!stderrText.isEmpty())
+                appendHtml("<span style='color:red;'>" + stderrText.trimmed() + "</span>");
+        }
+
+        // Read return value
+        QFile fRet(retFile);
+        if (fRet.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            QTextStream in(&fRet);
+            QString retText = in.readAll();
+            fRet.close();
+            if (!retText.isEmpty())
+                appendHtml("<span style='color:green;'>Return: " + retText.trimmed() + "</span>");
+        }
+
+        // Cleanup temp files
+        QFile::remove(outFile);
+        QFile::remove(errFile);
+        QFile::remove(retFile);
     }
 }
+
 
 
 void Console::wheelEvent(QWheelEvent *event) {
