@@ -15,34 +15,38 @@ void showScriptEditorDock()
         return;
     }
 
-    // Check and remove existing
-    QObject* existing = mayaMainWindow->findChild<QObject*>("ScriptEditorPanel");
-    if (existing) {
-        existing->deleteLater();
+    QDockWidget* dockWidget = mayaMainWindow->findChild<QDockWidget*>("ScriptEditorPanel");
+    ScriptEditorPanel* panel = nullptr;
+
+    if (!dockWidget) {
+        dockWidget = new QDockWidget("Bes Editor", mayaMainWindow);
+        dockWidget->setObjectName("ScriptEditorPanel");
+
+        panel = new ScriptEditorPanel(dockWidget);
+        dockWidget->setWidget(panel);
+
+        mayaMainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
+    }
+    else {
+        // Get the existing panel from the existing dock widget
+        panel = qobject_cast<ScriptEditorPanel*>(dockWidget->widget());
     }
 
-    QDockWidget* dockWidget = new QDockWidget("Bes Editor", mayaMainWindow);
-    dockWidget->setObjectName("ScriptEditorPanel");
-
-    ScriptEditorPanel* panel = new ScriptEditorPanel(dockWidget);
-    dockWidget->setWidget(panel);
-
-    mayaMainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidget); 
     dockWidget->show();
     dockWidget->raise();
     dockWidget->setFocus();
 
     std::cout << "Opening Script Editor" << std::endl;
-    
-    //loadState();
-    if(auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
+
+    if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
         tabEditor->loadState();
     }
-    //save on close
-    QObject::connect(dockWidget, &QDockWidget::dockLocationChanged,
-                     panel, [panel]() {
-                         if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
-                             tabEditor->saveState();
-                         }
-                     });
+
+    QObject::connect(dockWidget, &QDockWidget::visibilityChanged, panel, [panel](bool visible) {
+        if (!visible) {
+            if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
+                tabEditor->saveState();
+            }
+        }
+    });
 }

@@ -8,6 +8,9 @@
 #include <QInputDialog>
 #include <QDebug>
 #include <QMessageBox>
+#include <QDockWidget>
+#include <QMainWindow>
+
 
 TabScriptEditor::TabScriptEditor(QWidget *parent)
     : QWidget(parent)
@@ -130,30 +133,30 @@ QTabWidget* TabScriptEditor::createTabWidget(bool withDefaultTab)
         tw->tabBar()->setTabButton(tw->count() - 1, QTabBar::RightSide, nullptr);
     }
 
-connect(tw, &QTabWidget::tabCloseRequested, this, [=](int index) {
-    if (tw->tabText(index) == "+") {
-        return;
-    }
-
-    QWidget* w = tw->widget(index);
-
-
-    // Count how many tabs are user tabs, not including plus
-    int userTabsCount = 0;
-    for (int i = 0; i < tw->count(); ++i) {
-        if (tw->tabText(i) != "+") {
-            ++userTabsCount;
+    connect(tw, &QTabWidget::tabCloseRequested, this, [=](int index) {
+        if (tw->tabText(index) == "+") {
+            return;
         }
-    }
 
-    tw->removeTab(index);
-    w->deleteLater();
+        QWidget* w = tw->widget(index);
 
-    // If no user tabs remain, close the whole tab widget
-    if (userTabsCount == 1) {
-        std::cout << "No user tabs left, removing tab widget." << std::endl;
-        this->closeTab(tw);
-    }
+
+        // Count how many tabs are user tabs, not including plus
+        int userTabsCount = 0;
+        for (int i = 0; i < tw->count(); ++i) {
+            if (tw->tabText(i) != "+") {
+                ++userTabsCount;
+            }
+        }
+
+        tw->removeTab(index);
+        w->deleteLater();
+
+        // If no user tabs remain, close the whole tab widget
+        if (userTabsCount == 1) {
+            std::cout << "No user tabs left, removing tab widget." << std::endl;
+            this->closeTab(tw);
+        }
 });
 
 
@@ -218,6 +221,12 @@ bool TabScriptEditor::eventFilter(QObject* obj, QEvent* event)
 
 void TabScriptEditor::closeAllTabs()
 {
+    if (QMessageBox::question(this, "Reset Layout", "Are you sure you want to close all tabs? This will close all tabs and remove all splits, including code") 
+    != QMessageBox::Yes) 
+    {
+        return; // User cancelled
+    }
+
     closeAllTabsInternal();
     
     emit allTabsClosed(); // Notify that all tabs are closed
@@ -225,11 +234,7 @@ void TabScriptEditor::closeAllTabs()
 
 void TabScriptEditor::closeAllTabsInternal()
 {
-    if (QMessageBox::question(this, "Reset Layout", "Are you sure you want to close all tabs? This will close all tabs and remove all splits, including code") 
-    != QMessageBox::Yes) 
-    {
-        return; // User cancelled
-    }
+
 
         // Remove all tabs from each tab widget, including "+" tabs
     for (QTabWidget* tw : tabWidgets) {
@@ -276,8 +281,10 @@ void TabScriptEditor::renameTab()
 void TabScriptEditor::saveState()
 {
     QSettings settings("Robin", "BesEditor");
+
     settings.beginGroup("TabScriptEditor");
 
+    settings.setValue("geometry", saveGeometry()); 
     // Save splitter state (sizes)
     QList<int> sizes = splitter->sizes();
     settings.setValue("splitterSizes", QVariant::fromValue(sizes));
@@ -306,6 +313,15 @@ void TabScriptEditor::saveState()
     }
     settings.endArray();
 
+    // Save where the editor was docked
+    if (auto dock = qobject_cast<QDockWidget*>(parentWidget())) {
+        if (auto mw = qobject_cast<QMainWindow*>(dock->parentWidget())) {
+            settings.setValue("mainWindowState", mw->saveState());
+        }
+    }
+
+
+
     settings.endGroup();
 
     qDebug() << "Saved" << tabWidgets.size() << "tab widgets.";
@@ -315,7 +331,11 @@ void TabScriptEditor::saveState()
 void TabScriptEditor::loadState()
 {
     QSettings settings("Robin", "BesEditor");
+
     settings.beginGroup("TabScriptEditor");
+
+    // Load geometry of the editor
+    restoreGeometry(settings.value("geometry").toByteArray());
 
     // Clear current tabs and widgets
     closeAllTabsInternal(); // make sure splitter is empty & tabWidgets cleared
@@ -371,6 +391,12 @@ void TabScriptEditor::loadState()
         splitter->setSizes(sizes);
     }
     
+    //restore docking
+    if (auto dock = qobject_cast<QDockWidget*>(parentWidget())) {
+        if (auto mw = qobject_cast<QMainWindow*>(dock->parentWidget())) {
+            mw->restoreState(settings.value("mainWindowState").toByteArray());
+        }
+    }
 
     settings.endGroup();
 
