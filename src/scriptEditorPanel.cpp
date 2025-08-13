@@ -20,7 +20,7 @@
 ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     : QDockWidget(parent)
 {
-    QWidget *container = new QWidget(this);
+    QWidget *container = new QWidget(parent);
     
     tabEditor = new TabScriptEditor(container);
 

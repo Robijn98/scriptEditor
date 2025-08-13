@@ -8,7 +8,7 @@
 
 Console::Console(QWidget *parent) : QPlainTextEdit(parent)
 {
-    
+    //set up console UI    
     QPlainTextEdit::setReadOnly(true);
     QPlainTextEdit::setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::TextSelectableByKeyboard);
     QFont font = this->font();
@@ -20,11 +20,12 @@ Console::Console(QWidget *parent) : QPlainTextEdit(parent)
 
 void Console::runCode(CodeEditor *editor, bool runPartial)
 {
+    // if no current editor exit function
     if (!editor) {
         appendPlainText("Error: No active editor");
         return;
     }
-
+    // check if running partial if any text is selected, otherwise give error
     QString code;
     if (runPartial) {
         code = editor->textCursor().selectedText();
@@ -32,14 +33,19 @@ void Console::runCode(CodeEditor *editor, bool runPartial)
             appendHtml("<span style='color:red;'>Error: No text selected</span>");
             return;
         }
-    } else {
+    }
+    //check if theres any code at all
+    else 
+    {
         code = editor->toPlainText();
         if (code.isEmpty()) {
             appendHtml("<span style='color:red;'>Error: No code to run</span>");
             return;
         }
     }
-    code = code.replace(QChar(0x2029), QChar('\n'));  // replace paragraph separator with normal newline
+    // replace paragraph separator with normal newline
+    code = code.replace(QChar(0x2029), QChar('\n'));  
+
 
     // Show the entire code block at once
     appendPlainText("> " + code);

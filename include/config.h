@@ -1,3 +1,9 @@
+//header file encapsulates the configuration class, which is used to manage the configuration settings in the script editor tab
+//author: Robin van den Eerenbeemd
+//version: 1.0
+//date: 13 August 2025 updated to NCCA coding standards
+
+
 #ifndef CONFIG_H
 #define CONFIG_H
 

@@ -1,3 +1,8 @@
+//header file that manages the style of the scripteditor
+//author: Robin van den Eerenbeemd
+//version: 1.0
+//date: 13 August 2025 updated to NCCA coding standards
+
 #ifndef STYLE_H
 #define STYLE_H
 

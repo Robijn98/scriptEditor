@@ -4,7 +4,6 @@
 //date: 10 August 2025 updated to NCCA coding standards
 
 
-
 #pragma once
 
 #include <QWidget>

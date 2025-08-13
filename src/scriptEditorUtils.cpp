@@ -9,6 +9,7 @@
 
 void showScriptEditorDock()
 {
+    // Ensure the Maya main window is available
     QMainWindow* mayaMainWindow = qobject_cast<QMainWindow*>(MQtUtil::mainWindow());
     if (!mayaMainWindow) {
         MGlobal::displayError("Could not find Maya main window");
@@ -38,10 +39,12 @@ void showScriptEditorDock()
 
     std::cout << "Opening Script Editor" << std::endl;
 
+    // Load the state of the tab editor if it exists
     if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
         tabEditor->loadState();
     }
 
+    // Connect visibility change signal to save state when dock widget is hidden
     QObject::connect(dockWidget, &QDockWidget::visibilityChanged, panel, [panel](bool visible) {
         if (!visible) {
             if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {

@@ -15,6 +15,7 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     tabEditor(tabEditor),
     console(console)
 {
+    // Initialize the UI ----------------------------------------------------------
     ui->setupUi(this);
     ui->saveButton->setStyleSheet(Style::iconButtonStyle);
     ui->clearButton->setStyleSheet(Style::iconButtonStyle);
@@ -22,12 +23,13 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     ui->searchAndReplaceButton->setStyleSheet(Style::iconButtonStyle);
     ui->templateButton->setStyleSheet(Style::iconButtonStyle);
 
+    // Initialize the button bar ---------------------------------------------------
     editfile = new EditFile(tabEditor);
 
     searchandreplace = new SearchAndReplace(tabEditor->currentEditor());
     opentemplate = new OpenTemplate(tabEditor, TemplateMode::Load, this);
 
-    //add tooltips
+    //add tooltips -----------------------------------------------------------
     ui->saveButton->setToolTip("Save Script");
     ui->clearButton->setToolTip("Clear Current Editor");
     ui->runButton->setToolTip("Run Script");

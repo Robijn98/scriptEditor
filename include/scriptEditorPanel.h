@@ -1,3 +1,8 @@
+//header file encapsulates the ScriptEditorPanel class, which is used to manage the UI in the application
+//author: Robin van den Eerenbeemd
+//version: 1.0
+//date: 13 August 2025 updated to NCCA coding standards
+
 #pragma once
 
 #include "highlighter.h"
@@ -26,6 +31,7 @@ public:
     explicit ScriptEditorPanel(QWidget *parent = nullptr);
 
 private slots:
+    //slots that handle opening previously established QWidgts
     void newCommand();
     void editCommand();
     void openTemplate();
@@ -35,6 +41,7 @@ private slots:
 
 
 protected:
+    // Override the close event to handle closing the script editor panel
     void closeEvent(QCloseEvent* event) override;
 
 

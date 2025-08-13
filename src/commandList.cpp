@@ -18,6 +18,7 @@ CommandList::CommandList(QListWidget *parent)
     commandList = convertToList(dir);
     populateList(commandList);
 
+    //connnects the item being clicked to print the command definition and imports to the script editor
     connect(this, &QListWidget::itemDoubleClicked, this, [=](QListWidgetItem *item) {
         QString commandText = commandDef(item->text(), dir);
         emit commandSelected(commandText);
@@ -58,7 +59,7 @@ std::list<QString> CommandList::convertToList(QDir dir)
     return listOut;
 }
 
-//turn list into listitems
+//turn list into listitems and populate the command list
 void CommandList::populateList(std::list<QString> commandList)
 {
 
@@ -70,12 +71,14 @@ void CommandList::populateList(std::list<QString> commandList)
 
 QString CommandList::commandDef(QString fileName, QDir dir)
 {
+    
     QString commandDef;
     QString completeFileName = QString("%1/%2.py").arg(dir.path()).arg(fileName);
     QFile file(completeFileName);
 
     QRegularExpression re(R"(def\s+([a-zA-Z_][a-zA-Z0-9_]*\(.*\))\s*:)");
 
+    // check if the file exists and can be opened
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QString importFile = QString("import %1").arg(fileName);
         commandDef.append(importFile);
@@ -94,10 +97,12 @@ QString CommandList::commandDef(QString fileName, QDir dir)
             if (lines[i].trimmed() == "#CLASS AND FUNCTION") {
                 QString nextLine = lines[i + 1].trimmed();
                 if (nextLine.startsWith("#") && nextLine.contains("(") && nextLine.contains(")")) {
-                    QString functionCall = nextLine.mid(1).trimmed(); // Remove the leading '#'
+                    // Remove the leading '#'
+                    QString functionCall = nextLine.mid(1).trimmed(); 
                     commandDef.append(functionCall + "\n\n");
                     classAndFunctionFound = true;
-                    break; // stop after first match
+                    // stop after first match
+                    break; 
                 }
             }
         }
