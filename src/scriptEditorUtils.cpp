@@ -7,7 +7,7 @@
 #include <QtWidgets/QMainWindow>
 #include "scriptEditorPanel.h"
 
-void showScriptEditorDock()
+void showBesEditor()
 {
     // Ensure the Maya main window is available
     QMainWindow* mayaMainWindow = qobject_cast<QMainWindow*>(MQtUtil::mainWindow());

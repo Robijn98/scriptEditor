@@ -1,24 +1,48 @@
-//header file encapsulates the configuration class, which is used to manage the configuration settings in the script editor tab
-//author: Robin van den Eerenbeemd
-//version: 1.0
-//date: 13 August 2025 updated to NCCA coding standards
-
-
 #ifndef CONFIG_H
 #define CONFIG_H
 
-#pragma once
 #include <QString>
+#include <QDir>
+#include <QFileInfo>
 
 class Config
 {
 public:
+    // Paths to files and folders installed by drag-and-drop
+    inline static QString syntaxPath;
+    inline static QString riggingCommandsPath;
+    inline static QString riggingTemplatesPath;
+    inline static QString pluginFilePath;
 
+    // Initialize paths at runtime
+    static void initialize()
+    {
+        // Maya user scripts directory
+        QString userScriptsDir = QDir::homePath() + "/Documents/maya/scripts/";
 
-    // Static public variables
-    inline static QString syntaxPath = "/home/s5725067/myRepos/scriptEditor/syntaxLists/maya_cmds_list.txt";
-    inline static QString riggingCommandsPath = "/home/s5725067/myRepos/scriptEditorUI/riggingCommands";
-    inline static QString riggingTemplatesPath = "/home/s5725067/myRepos/scriptEditorUI/riggingTemplates";
+        // Ensure general folder exists
+        QDir generalDir(userScriptsDir);
+        if (!generalDir.exists()) {
+            generalDir.mkpath(".");
+        }
+
+        // Directories installed by drag-and-drop
+        riggingCommandsPath = QDir(userScriptsDir + "riggingCommands").absolutePath();
+        riggingTemplatesPath = QDir(userScriptsDir + "riggingTemplates").absolutePath();
+        QString syntaxDir = QDir(userScriptsDir + "syntaxLists").absolutePath();
+
+        // Syntax file path
+        syntaxPath = QDir(syntaxDir).filePath("maya_cmds_list.txt");
+
+        // Plugin file (assumes drag-and-drop installer copied it here)
+        pluginFilePath = QDir(QDir::homePath() + "/Documents/maya/plug-ins").filePath("libbesEditor.so");
+
+        // Ensure directories exist (creates them if missing)
+        QDir().mkpath(riggingCommandsPath);
+        QDir().mkpath(riggingTemplatesPath);
+        QDir().mkpath(syntaxDir);
+        QDir().mkpath(QFileInfo(pluginFilePath).absolutePath());
+    }
 };
 
 #endif

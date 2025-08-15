@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(MayaQtPlugin)
+project(besEditor)
 
 # Enable Qt processing
 set(CMAKE_AUTOMOC ON)
@@ -44,6 +44,7 @@ set(SOURCES
     src/searchAndReplace.cpp
     src/console.cpp
     src/tabScriptEditor.cpp
+    src/config.cpp
 )
 
 set(HEADERS
@@ -93,10 +94,10 @@ set(RESOURCES
 link_directories(${MAYA_LOCATION}/lib)
 
 # Build shared library
-add_library(MayaQtPlugin SHARED ${SOURCES} ${HEADERS} ${UI} ${RESOURCES}) 
+add_library(besEditor SHARED ${SOURCES} ${HEADERS} ${UI} ${RESOURCES}) 
 
 # Link Maya and Qt libraries
-target_link_libraries(MayaQtPlugin
+target_link_libraries(besEditor
     Foundation
     OpenMaya
     OpenMayaUI
@@ -117,7 +118,7 @@ add_custom_target(CopySyntaxFiles ALL
 
 
 # Set output plugin .so name
-set_target_properties(MayaQtPlugin PROPERTIES
+set_target_properties(besEditor PROPERTIES
     PREFIX "lib"
     SUFFIX ".so"
 )

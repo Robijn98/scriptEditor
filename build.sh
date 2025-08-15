@@ -1,7 +1,5 @@
 #!/bin/bash
-
-# Fail on error
-set -e
+set -e 
 
 # Default to DEVKIT_LOCATION if not set
 if [ -z "$DEVKIT_LOCATION" ]; then
@@ -11,10 +9,8 @@ fi
 
 # Maya plugin output directory
 MAYA_PLUGINS_DIR="$DEVKIT_LOCATION/plug-ins/maya2023/plug-ins"
-PLUGIN_NAME="libMayaQtPlugin"
-PLUGIN_FILE="${PLUGIN_NAME}.so"
+PLUGIN_NAME="besEditor"
 
-# Print directory info
 echo "Current directory: $(pwd)"
 echo "Maya plugins directory: $MAYA_PLUGINS_DIR"
 
@@ -25,23 +21,17 @@ if [ ! -d "$MAYA_PLUGINS_DIR" ]; then
 fi
 
 # Configure and build
-cmake -S . -B build || { echo "CMake configuration failed"; exit 1; }
-cmake --build build || { echo "Build failed"; exit 1; }
+cmake -S . -B build
+cmake --build build
 
-# Validate plugin file
-if [ ! -f "build/Debug/${PLUGIN_FILE}" ]; then
-    echo "Error: Plugin file not found: build/${PLUGIN_FILE}"
+# Find the built plugin file (.so)
+PLUGIN_FILE_PATH=$(find build -type f -name "lib${PLUGIN_NAME}.so" -o -name "${PLUGIN_NAME}.so" | head -n 1)
+
+if [ -z "$PLUGIN_FILE_PATH" ]; then
+    echo "Error: Plugin file not found in build directory"
     exit 1
 fi
 
-
-if [ ! -f "build/${PLUGIN_FILE}" ]; then
-    echo "Plugin not found. Forcing rebuild..."
-    rm -rf build/
-    cmake -S . -B build || { echo "CMake configuration failed"; exit 1; }
-    cmake --build build --target MayaQtPlugin || { echo "Build failed"; exit 1; }
-fi
-
 # Copy plugin to Maya plugins directory
-cp "build/Debug/${PLUGIN_FILE}" "$MAYA_PLUGINS_DIR"
-echo "✅ Plugin ${PLUGIN_FILE} copied to: $MAYA_PLUGINS_DIR"
+cp "$PLUGIN_FILE_PATH" "$MAYA_PLUGINS_DIR"
+echo "Plugin $(basename "$PLUGIN_FILE_PATH") copied to: $MAYA_PLUGINS_DIR"
