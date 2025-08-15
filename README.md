@@ -63,7 +63,7 @@ linux: /usr/autodesk/maya<version>/bin/plug-ins
 Once installed, restart maya, you can now in the plugins manager load the plugin. 
 To open the editor, simply run this code or press the bear button in the newly created BesEditor shelf:
    ```sh
-cmds.showBesEditor 
+cmds.showBesEditor()
    ```
 
   
