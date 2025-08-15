@@ -8,6 +8,7 @@ SearchAndReplace::SearchAndReplace(CodeEditor* editor, QWidget *parent)
     , ui(new Ui::SearchAndReplace)
     , editor(editor)
 {
+    // Initialize the UI ----------------------------------------------------------
     ui->setupUi(this);
     this->setWindowTitle("Search And Replace");
 

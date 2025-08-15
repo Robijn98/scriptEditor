@@ -22,6 +22,8 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     ui->runButton->setStyleSheet(Style::iconButtonStyle);
     ui->searchAndReplaceButton->setStyleSheet(Style::iconButtonStyle);
     ui->templateButton->setStyleSheet(Style::iconButtonStyle);
+    ui->runPartialButton->setStyleSheet(Style::iconButtonStyle);
+    ui->clearTerminalButton->setStyleSheet(Style::iconButtonStyle);
 
     // Initialize the button bar ---------------------------------------------------
     editfile = new EditFile(tabEditor);

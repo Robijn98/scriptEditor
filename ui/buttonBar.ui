@@ -51,7 +51,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>330</width>
+     <width>350</width>
      <height>51</height>
     </rect>
    </property>
@@ -74,30 +74,13 @@
      </widget>
     </item>
     <item>
-     <widget class="QToolButton" name="clearButton">
-      <property name="text">
-       <string>...</string>
-      </property>
-      <property name="icon">
-       <iconset resource="../resources.qrc">
-        <normaloff>:/icons/icons/clear.png</normaloff>:/icons/icons/clear.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>30</width>
-        <height>30</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item>
      <widget class="QToolButton" name="runButton">
       <property name="text">
        <string>...</string>
       </property>
       <property name="icon">
        <iconset resource="../resources.qrc">
-        <normaloff>:/icons/icons/play.png</normaloff>:/icons/icons/play.png</iconset>
+        <normaloff>:/icons/icons/executeAll.png</normaloff>:/icons/icons/executeAll.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -111,6 +94,16 @@
      <widget class="QToolButton" name="runPartialButton">
       <property name="text">
        <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../resources.qrc">
+        <normaloff>:/icons/icons/play.png</normaloff>:/icons/icons/play.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
       </property>
      </widget>
     </item>
@@ -152,6 +145,33 @@
      <widget class="QToolButton" name="clearTerminalButton">
       <property name="text">
        <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../resources.qrc">
+        <normaloff>:/icons/icons/clearConsole.png</normaloff>:/icons/icons/clearConsole.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QToolButton" name="clearButton">
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../resources.qrc">
+        <normaloff>:/icons/icons/clearEditor.png</normaloff>:/icons/icons/clearEditor.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
       </property>
      </widget>
     </item>

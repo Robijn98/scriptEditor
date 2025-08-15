@@ -25,7 +25,7 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     tabEditor = new TabScriptEditor(container);
 
     // ----------------ADD ALL PARTS ----------------
-    // editor = new CodeEditor(container);
+
     commandList = new CommandList();
     editfile = new EditFile(tabEditor);
     console = new Console(container);
@@ -33,7 +33,7 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     buttonbar = new ButtonBar(tabEditor, console);
     newcommand = new NewCommand(this);
     editcommand = new EditCommand(this);
-    // highlighter = new Highlighter(editor->document());
+
     newtemplate = new NewTemplate();
     edittemplate = new EditTemplate();
 
