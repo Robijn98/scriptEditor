@@ -28,7 +28,7 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     // Initialize the button bar ---------------------------------------------------
     editfile = new EditFile(tabEditor);
 
-    searchandreplace = new SearchAndReplace(tabEditor->currentEditor());
+    searchandreplace = new SearchAndReplace(tabEditor, this);
     opentemplate = new OpenTemplate(tabEditor, TemplateMode::Load, this);
 
     //add tooltips -----------------------------------------------------------

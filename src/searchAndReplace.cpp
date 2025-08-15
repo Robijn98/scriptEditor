@@ -3,12 +3,12 @@
 #include "style.h"
 #include <QRegularExpression>
 
-SearchAndReplace::SearchAndReplace(CodeEditor* editor, QWidget *parent)
+SearchAndReplace::SearchAndReplace(TabScriptEditor* tabEditor, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::SearchAndReplace)
-    , editor(editor)
+    , tabEditor(tabEditor)
+    , editor(tabEditor->currentEditor())  // <-- now valid
 {
-    // Initialize the UI ----------------------------------------------------------
     ui->setupUi(this);
     this->setWindowTitle("Search And Replace");
 
@@ -18,13 +18,16 @@ SearchAndReplace::SearchAndReplace(CodeEditor* editor, QWidget *parent)
     ui->cancelButton->setStyleSheet(Style::buttonStyle);
     ui->findNextButton->setStyleSheet(Style::buttonStyle);
     ui->matchCaseCheckBox->setStyleSheet(Style::checkBoxStyle);
-
 }
+
+
 
 SearchAndReplace::~SearchAndReplace()
 {
     delete ui;
 }
+
+
 
 
 void SearchAndReplace::on_cancelButton_clicked()
@@ -36,6 +39,7 @@ void SearchAndReplace::on_cancelButton_clicked()
 void SearchAndReplace::on_findNextButton_clicked()
 {
 
+    CodeEditor* editor = tabEditor->currentEditor();
     if (!editor) return;
 
     QString currentWord = ui->findInput->text();
@@ -63,6 +67,7 @@ void SearchAndReplace::on_findNextButton_clicked()
 
 void SearchAndReplace::on_replaceButton_clicked()
 {
+    CodeEditor* editor = tabEditor->currentEditor();
     if (!editor) return;
 
     QString replaceWord = ui->replaceInput->text();
@@ -76,7 +81,9 @@ void SearchAndReplace::on_replaceButton_clicked()
 
 void SearchAndReplace::on_replaceAllButton_clicked()
 {
+    CodeEditor* editor = tabEditor->currentEditor();
     if (!editor) return;
+    
     QString currentWord = ui->findInput->text();
     QString replaceWord = ui->replaceInput->text();
 
@@ -85,15 +92,17 @@ void SearchAndReplace::on_replaceAllButton_clicked()
         flags |= QTextDocument::FindCaseSensitively;
     }
 
-
     editor->moveCursor(QTextCursor::Start);
 
-    while(editor->find(currentWord, flags))
+    QTextCursor cursor = editor->textCursor();
+    while (!currentWord.isEmpty() && editor->find(currentWord, flags))
     {
-        editor->textCursor().insertText(replaceWord);
+        cursor = editor->textCursor();
+        cursor.beginEditBlock();
+        cursor.removeSelectedText();
+        cursor.insertText(replaceWord);
+        cursor.endEditBlock();
     }
-
-
 }
 
 

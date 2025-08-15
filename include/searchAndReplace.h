@@ -8,7 +8,7 @@
 
 #include <QDialog>
 
-#include "scriptEditor.h"
+#include "tabScriptEditor.h"
 
 namespace Ui {
 class SearchAndReplace;
@@ -20,7 +20,7 @@ class SearchAndReplace : public QDialog
 
 public:
     // Constructor for the SearchAndReplace class
-    explicit SearchAndReplace(CodeEditor* editor, QWidget *parent = nullptr);
+    explicit SearchAndReplace(TabScriptEditor* tabEditor, QWidget *parent = nullptr);
     ~SearchAndReplace();
 
 private slots:
@@ -34,9 +34,9 @@ private slots:
     void on_replaceAllButton_clicked();
 
 private:
-    CodeEditor *editor;
+    TabScriptEditor* tabEditor;
     Ui::SearchAndReplace *ui;
-
+    CodeEditor* editor;
 };
 
 #endif // SEARCHANDREPLACE_H

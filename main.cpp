@@ -45,5 +45,7 @@ MStatus uninitializePlugin(MObject obj)
 {
     MFnPlugin plugin(obj);
     plugin.deregisterCommand("showBesEditor");
+    //print to maya
+    MGlobal::displayInfo("Bes Editor plugin unregistered successfully.");
     return MS::kSuccess;
 }
