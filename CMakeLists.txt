@@ -16,7 +16,7 @@ if(NOT DEFINED ENV{MAYA_LOCATION})
 endif()
 set(MAYA_LOCATION $ENV{MAYA_LOCATION})
 
-# Find Qt5
+# Find Qt5 (system Qt is not used by Maya plugin; only for CMake to know headers)
 find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
 
 # Include directories
@@ -66,7 +66,6 @@ set(HEADERS
     include/editCommand.h
     include/console.h
     include/tabScriptEditor.h
-
 )
 
 set(UI
@@ -82,21 +81,19 @@ set(UI
     ui/commandList.ui
     ui/editTemplate.ui
     ui/lineNumber.ui
-
 )
 
 set(RESOURCES
     resources.qrc
 )
 
-
 # Add Maya lib directory
 link_directories(${MAYA_LOCATION}/lib)
 
-# Build shared library
-add_library(besEditor SHARED ${SOURCES} ${HEADERS} ${UI} ${RESOURCES}) 
+# Build shared library (plugin)
+add_library(besEditor SHARED ${SOURCES} ${HEADERS} ${UI} ${RESOURCES})
 
-# Link Maya and Qt libraries
+# Link Maya and Qt libraries (Maya provides Qt at runtime)
 target_link_libraries(besEditor
     Foundation
     OpenMaya
@@ -104,11 +101,9 @@ target_link_libraries(besEditor
     Qt5::Widgets
     Qt5::Core
     Qt5::Gui
-
 )
 
-
-#copy syntax highlighting files to the build directory
+# Copy syntax highlighting files to the build directory
 add_custom_target(CopySyntaxFiles ALL
     COMMAND ${CMAKE_COMMAND} -E copy_directory
     ${CMAKE_CURRENT_SOURCE_DIR}/syntaxLists
@@ -116,9 +111,34 @@ add_custom_target(CopySyntaxFiles ALL
     COMMENT "Copying syntax highlighting files to build directory"
 )
 
-
 # Set output plugin .so name
 set_target_properties(besEditor PROPERTIES
     PREFIX "lib"
     SUFFIX ".so"
 )
+
+# -------------------------------------------------------
+# Testing setup
+find_package(GTest REQUIRED)
+include(GoogleTest)
+enable_testing()
+
+# Build test executable
+add_executable(allTests tests/mayaTests.cpp)
+
+# Link against besEditor and Maya libs (avoid system Qt to prevent conflicts)
+target_link_libraries(allTests
+    besEditor
+    GTest::gtest_main
+    Foundation
+    OpenMaya
+    OpenMayaUI
+)
+
+# Make sure Maya's lib path is used at runtime
+set_target_properties(allTests PROPERTIES
+    BUILD_RPATH "${MAYA_LOCATION}/lib"
+)
+
+# Discover tests automatically
+gtest_discover_tests(allTests)
