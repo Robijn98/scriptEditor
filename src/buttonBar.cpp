@@ -7,7 +7,8 @@
 #include <QFile>
 #include <QTextStream>
 #include <QDir>
-
+#include "config.h"
+#include "mainUserScript.h"
 
 ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* parent)
     : QWidget(parent),
@@ -24,6 +25,7 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     ui->templateButton->setStyleSheet(Style::iconButtonStyle);
     ui->runPartialButton->setStyleSheet(Style::iconButtonStyle);
     ui->clearTerminalButton->setStyleSheet(Style::iconButtonStyle);
+    ui->runMainScript->setStyleSheet(Style::iconButtonStyle);
 
     // Initialize the button bar ---------------------------------------------------
     editfile = new EditFile(tabEditor);
@@ -39,6 +41,7 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     ui->templateButton->setToolTip("Open Template");
     ui->runPartialButton->setToolTip("Run Partial Code");
     ui->clearTerminalButton->setToolTip("Clear Terminal");
+    ui->runMainScript->setToolTip("Run Main Script");
 
 }
 
@@ -116,3 +119,28 @@ void ButtonBar::on_clearTerminalButton_clicked()
 }
 
 
+void ButtonBar::on_runMainScript_clicked()
+{
+
+    
+    // Get the main script path from the configuration
+    QString mainScriptPath = Config::mainScriptPath;
+    if (mainScriptPath.isEmpty()) {
+        MGlobal::displayError("Main script path is not set in the configuration.");
+        return;
+    }
+
+    // Load the main script into the current editor
+    QFile file(mainScriptPath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        MGlobal::displayError("Failed to open main script");
+        return;
+    }
+
+    QTextStream in(&file);
+    QString scriptContent = in.readAll();
+    file.close();
+
+    //runcode without loading it to editor
+    console->runCode(scriptContent, false);
+}

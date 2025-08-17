@@ -3,7 +3,6 @@
 #include <QProcess>
 
 
-//check if test is running at all
 TEST(MayaTests, generalTest)
  {
     EXPECT_TRUE(true);

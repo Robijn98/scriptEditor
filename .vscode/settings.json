@@ -82,7 +82,8 @@
     "__string": "cpp",
     "qplaintextedit": "cpp",
     "qdebug": "cpp",
-    "qttest": "cpp"
+    "qttest": "cpp",
+    "qinputdialog": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

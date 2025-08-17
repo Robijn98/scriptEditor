@@ -45,6 +45,7 @@ set(SOURCES
     src/console.cpp
     src/tabScriptEditor.cpp
     src/config.cpp
+    src/mainUserScript.cpp
 )
 
 set(HEADERS
@@ -66,6 +67,7 @@ set(HEADERS
     include/editCommand.h
     include/console.h
     include/tabScriptEditor.h
+    include/mainUserScript.h
 )
 
 set(UI
@@ -81,6 +83,7 @@ set(UI
     ui/commandList.ui
     ui/editTemplate.ui
     ui/lineNumber.ui
+    ui/mainScript.ui
 )
 
 set(RESOURCES

@@ -16,7 +16,7 @@
 #include "scriptEditor.h"
 #include "console.h"
 #include "tabScriptEditor.h"
-
+#include "mainUserScript.h"
 
 namespace Ui {
 class ButtonBar;
@@ -48,6 +48,8 @@ private slots:
     void on_runPartialButton_clicked();
 
     void on_clearTerminalButton_clicked();
+
+    void on_runMainScript_clicked();
 
 private:
     // Private member functions

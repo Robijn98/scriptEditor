@@ -12,6 +12,7 @@
         <file>icons/clearConsole.png</file>
         <file>icons/clearEditor.png</file>
         <file>icons/executeAll.png</file>
+        <file>icons/saveMain.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

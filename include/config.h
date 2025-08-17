@@ -13,6 +13,7 @@ public:
     inline static QString riggingCommandsPath;
     inline static QString riggingTemplatesPath;
     inline static QString pluginFilePath;
+    inline static QString mainScriptPath;
 
     // Initialize paths at runtime
     static void initialize()
@@ -36,7 +37,10 @@ public:
 
         // Plugin file (assumes drag-and-drop installer copied it here)
         pluginFilePath = QDir(QDir::homePath() + "/Documents/maya/plug-ins").filePath("libbesEditor.so");
-
+        
+        // Main script path 
+        mainScriptPath = QDir(userScriptsDir + "mainScript.py").absolutePath();
+        
         // Ensure directories exist (creates them if missing)
         QDir().mkpath(riggingCommandsPath);
         QDir().mkpath(riggingTemplatesPath);

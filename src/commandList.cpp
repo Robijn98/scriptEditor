@@ -4,7 +4,7 @@
 #include <QRegularExpression>
 #include <QInputDialog>
 #include <list>
-
+#include <QMessageBox>
 #include "config.h"
 
 CommandList::CommandList(QListWidget *parent)
@@ -152,16 +152,45 @@ void CommandList::refreshList()
 
 void CommandList::rename()
 {
-    bool ok{};
-    QString newName = QInputDialog::getText(this, tr("QInputDialog::getText()"),
-                                         tr("New name:"), QLineEdit::Normal,
-                                         QDir::home().dirName(), &ok);
-
     QListWidgetItem *item = this->currentItem();
-        QString oldName = item->text();
+    if (!item) {
+        QMessageBox::warning(this, tr("Rename Command"),
+                             tr("No command selected to rename."));
+        return;
+    }
 
-        QDir dir(Config::riggingCommandsPath);
-        QFile::rename(dir.filePath(oldName + ".py"), dir.filePath(newName + ".py"));
+    bool ok{};
+    QString newName = QInputDialog::getText(
+        this, tr("Rename Command"),
+        tr("New name:"), QLineEdit::Normal,
+        item->text(), &ok);
+
+    if (!ok || newName.isEmpty()) {
+        return; // User cancelled or empty
+    }
+
+    // Check if the new name already exists in the list
+    QList<QListWidgetItem*> existingItems = this->findItems(newName, Qt::MatchExactly);
+    if (!existingItems.isEmpty()) {
+        QMessageBox::warning(this, tr("Rename Command"),
+                             tr("A command with this name already exists."));
+        return;
+    }
+
+    QString oldName = item->text();
+    QDir dir(Config::riggingCommandsPath);
+    QString oldFilePath = dir.filePath(oldName + ".py");
+    QString newFilePath = dir.filePath(newName + ".py");
+
+    if (!QFile::rename(oldFilePath, newFilePath)) {
+        QMessageBox::critical(this, tr("Rename Command"),
+                              tr("Failed to rename '%1' to '%2'.")
+                              .arg(oldName, newName));
+        return;
+    }
+
+    // Update UI
+    item->setText(newName);
 }
 
 

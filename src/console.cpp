@@ -144,6 +144,15 @@ with open(r"%4", "w", encoding="utf-8") as f_ret:
 }
 
 
+void Console::runCode(const QString &code, bool runPartial) {
+    // Create a temporary CodeEditor to run the code
+    CodeEditor *tempEditor = new CodeEditor();
+    tempEditor->setPlainText(code);
+    runCode(tempEditor, runPartial);
+    delete tempEditor;  // Clean up the temporary editor
+}
+
+
 
 void Console::wheelEvent(QWheelEvent *event) {
     if (event->modifiers() & Qt::ControlModifier) {

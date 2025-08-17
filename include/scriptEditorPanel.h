@@ -17,6 +17,7 @@
 #include "editTemplate.h"
 #include "console.h"
 #include "tabScriptEditor.h"
+#include "mainUserScript.h"
 
 #include <QDockWidget>
 #include <QTextEdit>
@@ -38,6 +39,7 @@ private slots:
     void newTemplate();
     void editTemplate();
     void removeTemplate();
+    void saveMainScript();
 
 
 protected:
@@ -60,6 +62,7 @@ private:
     NewTemplate *newtemplate;
     EditTemplate *edittemplate;
     Console *console;
+    MainUserScript *mainUserScript;
 };
 
 
