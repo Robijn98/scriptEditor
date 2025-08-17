@@ -210,10 +210,16 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
             // Swap: put baseWidget first, console second
             consoleSplitter->insertWidget(1, baseWidget);
             consoleSplitter->insertWidget(0, console);
+            //change button icon
+            buttonbar->consoleUp();
+            
+
         } else {
             // Restore original order: console first, baseWidget second
             consoleSplitter->insertWidget(1, console);
             consoleSplitter->insertWidget(0, baseWidget);
+            //change button icon
+            buttonbar->consoleDown();
         }
     });
 

@@ -9,8 +9,8 @@
         <file>icons/template.png</file>
         <file>icons/play.png</file>
         <file>icons/close.png</file>
-        <file>icons/clearConsole.png</file>
-        <file>icons/clearEditor.png</file>
+        <file>icons/clearUp.png</file>
+        <file>icons/clearDown.png</file>
         <file>icons/executeAll.png</file>
         <file>icons/saveMain.png</file>
     </qresource>

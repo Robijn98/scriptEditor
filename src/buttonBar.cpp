@@ -40,7 +40,7 @@ ButtonBar::ButtonBar(TabScriptEditor* tabEditor, Console* console, QWidget* pare
     ui->searchAndReplaceButton->setToolTip("Search and Replace");
     ui->templateButton->setToolTip("Open Template");
     ui->runPartialButton->setToolTip("Run Partial Code");
-    ui->clearTerminalButton->setToolTip("Clear Terminal");
+    ui->clearTerminalButton->setToolTip("Clear Console");
     ui->runMainScript->setToolTip("Run Main Script");
 
 }
@@ -143,4 +143,20 @@ void ButtonBar::on_runMainScript_clicked()
 
     //runcode without loading it to editor
     console->runCode(scriptContent, false);
+}
+
+void ButtonBar::consoleUp()
+{
+    ui->clearTerminalButton->setIcon(QIcon("icons/clearUp.png"));
+    ui->clearButton->setIcon(QIcon("icons/clearDown.png"));
+    ui->clearTerminalButton->update();
+    ui->clearButton->update();
+}
+
+void ButtonBar::consoleDown()
+{
+    ui->clearTerminalButton->setIcon(QIcon("icons/clearDown.png"));
+    ui->clearButton->setIcon(QIcon("icons/clearUp.png"));
+    ui->clearTerminalButton->update();
+    ui->clearButton->update();
 }

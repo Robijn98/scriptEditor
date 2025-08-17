@@ -165,7 +165,7 @@
       </property>
       <property name="icon">
        <iconset resource="../resources.qrc">
-        <normaloff>:/icons/icons/clearConsole.png</normaloff>:/icons/icons/clearConsole.png</iconset>
+        <normaloff>:/icons/icons/clearDown.png</normaloff>:/icons/icons/clearDown.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -182,7 +182,7 @@
       </property>
       <property name="icon">
        <iconset resource="../resources.qrc">
-        <normaloff>:/icons/icons/clearEditor.png</normaloff>:/icons/icons/clearEditor.png</iconset>
+        <normaloff>:/icons/icons/clearUp.png</normaloff>:/icons/icons/clearUp.png</iconset>
       </property>
       <property name="iconSize">
        <size>

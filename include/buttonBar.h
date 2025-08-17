@@ -31,6 +31,9 @@ public:
 explicit ButtonBar(TabScriptEditor* tabEditor, Console *console, QWidget *parent = nullptr);
     ~ButtonBar();
 
+    void consoleUp();
+    void consoleDown();
+
 
 private slots:
 
