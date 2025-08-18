@@ -16,7 +16,7 @@
 #include "scriptEditor.h"
 #include "console.h"
 #include "tabScriptEditor.h"
-
+#include "mainUserScript.h"
 
 namespace Ui {
 class ButtonBar;
@@ -30,6 +30,9 @@ public:
 /// Constructor for the ButtonBar class
 explicit ButtonBar(TabScriptEditor* tabEditor, Console *console, QWidget *parent = nullptr);
     ~ButtonBar();
+
+    void consoleUp();
+    void consoleDown();
 
 
 private slots:
@@ -48,6 +51,8 @@ private slots:
     void on_runPartialButton_clicked();
 
     void on_clearTerminalButton_clicked();
+
+    void on_runMainScript_clicked();
 
 private:
     // Private member functions

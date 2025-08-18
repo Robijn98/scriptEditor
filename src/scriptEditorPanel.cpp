@@ -25,7 +25,6 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     tabEditor = new TabScriptEditor(container);
 
     // ----------------ADD ALL PARTS ----------------
-
     commandList = new CommandList();
     editfile = new EditFile(tabEditor);
     console = new Console(container);
@@ -81,6 +80,10 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     connect(removeAction, &QAction::triggered, commandList, &CommandList::remove);
     connect(removeAction, &QAction::triggered, commandList, &CommandList::refreshList);
 
+    QAction* mainScriptAction = commandMenu->addAction("Save Main Script");
+    connect(mainScriptAction, &QAction::triggered, this, &ScriptEditorPanel::saveMainScript);
+
+
     QAction* refreshAction = commandMenu->addAction("Refresh");
     connect(refreshAction, &QAction::triggered, commandList, &CommandList::refreshList);
 
@@ -119,15 +122,13 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     tabMenu->addAction("rename tab", tabEditor, &TabScriptEditor::renameTab);
 
 
-    // //----------------------- SETTINGS MENU ---------------------------------------------------
-    // QToolButton *settingsButton = new QToolButton();
-    // settingsButton->setText("Settings");
-    // QMenu *settingsMenu = new QMenu();
-    // settingsButton->setMenu(settingsMenu);
-    // settingsButton->setPopupMode(QToolButton::InstantPopup);
-
-    // settingsMenu->addAction("Reset layout", tabEditor, &TabScriptEditor::resetLayout);
     
+    //------------------------- INITIALIZE LAYoUT MENU --------------------------------------
+    QToolButton *layoutButton = new QToolButton();
+    layoutButton->setText("Layout");
+    QMenu *layoutMenu = new QMenu();
+    layoutButton->setMenu(layoutMenu);
+    layoutButton->setPopupMode(QToolButton::InstantPopup);
 
 
 
@@ -141,7 +142,8 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     headerLayout->addWidget(commandButton);
     headerLayout->addWidget(templateButton);
     headerLayout->addWidget(tabButton);
-    // headerLayout->addWidget(settingsButton);
+    headerLayout->addWidget(layoutButton);
+
 
     headerLayout->addStretch();
 
@@ -161,16 +163,66 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     baseLayout->addWidget(scriptEditorSplitter);
 
     QSplitter *consoleSplitter = new QSplitter(Qt::Vertical);
-    consoleSplitter->addWidget(console);
+
     //wrap base into a widget
     QWidget *baseWidget = new QWidget();
     baseWidget->setLayout(baseLayout);
+
     consoleSplitter->addWidget(baseWidget);
+    consoleSplitter->addWidget(console);
+
+    consoleSplitter->setSizes({250, 50});
 
     mainLayout->addWidget(consoleSplitter);
 
     container->setLayout(mainLayout);
     this->setWidget(container);
+
+    //-----------------------------LAYOUT MENU ----------------------------------------------------
+
+
+    QAction *buttonBarShowAction = layoutMenu->addAction("Show Button Bar");
+    buttonBarShowAction->setCheckable(true);
+    buttonBarShowAction->setChecked(true);
+
+    connect(buttonBarShowAction, &QAction::toggled, buttonbar, &ButtonBar::setVisible);
+
+    QAction *consoleShowAction = layoutMenu->addAction("Show Console");
+    consoleShowAction->setCheckable(true);
+    consoleShowAction->setChecked(true);
+
+    connect(consoleShowAction, &QAction::toggled, console, &Console::setVisible);
+
+    
+    QAction *commandListShowAction = layoutMenu->addAction("Show Command List");
+    commandListShowAction->setCheckable(true);
+    commandListShowAction->setChecked(true);
+    connect(commandListShowAction, &QAction::toggled, commandList, &CommandList::setVisible);
+    
+    
+    
+    QAction *swapAction = layoutMenu->addAction("Swap Console and Editor");
+    swapAction->setCheckable(true);
+    swapAction->setChecked(false);
+    
+    connect(swapAction, &QAction::toggled, this, [=](bool checked) {
+        if (checked) {
+            // Swap: put baseWidget first, console second
+            consoleSplitter->insertWidget(1, baseWidget);
+            consoleSplitter->insertWidget(0, console);
+            //change button icon
+            buttonbar->consoleUp();
+            
+
+        } else {
+            // Restore original order: console first, baseWidget second
+            consoleSplitter->insertWidget(1, console);
+            consoleSplitter->insertWidget(0, baseWidget);
+            //change button icon
+            buttonbar->consoleDown();
+        }
+    });
+
 
 
     //---------------------- COMMAND SELECTION -----------------------------
@@ -211,7 +263,7 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
 
     tabButton->setStyleSheet(Style::buttonStyle);
 
-    // settingsButton->setStyleSheet(Style::buttonStyle);
+    layoutButton->setStyleSheet(Style::buttonStyle);
 
     //menu
     commandMenu->setStyleSheet(Style::menuStyle);
@@ -223,8 +275,9 @@ ScriptEditorPanel::ScriptEditorPanel(QWidget *parent)
     commandList->setStyleSheet(Style::listStyle);
 
     tabMenu->setStyleSheet(Style::menuStyle);
+
+    layoutMenu->setStyleSheet(Style::menuStyle);
     
-    // settingsMenu->setStyleSheet(Style::menuStyle);
 
 }
 
@@ -298,4 +351,12 @@ void ScriptEditorPanel::closeEvent(QCloseEvent* event)
         tabEditor->saveState();
     }
     QDockWidget::closeEvent(event);
+}
+
+void ScriptEditorPanel::saveMainScript()
+{
+    MainUserScript *mainScriptDialog = new MainUserScript(this);
+    mainScriptDialog->show();
+    mainScriptDialog->raise();
+    mainScriptDialog->setFocus();
 }

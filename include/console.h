@@ -19,7 +19,7 @@ class Console : public QPlainTextEdit
         Console(QWidget *parent = nullptr);
         // runs the code in the current editor
         void runCode(CodeEditor *editor, bool runPartial = false);
-
+        void runCode(const QString &code, bool runPartial = false);
     private:
         CodeEditor* currentEditor() const;
         // makes the console zoomable
