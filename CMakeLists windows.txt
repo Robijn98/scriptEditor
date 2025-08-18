@@ -1,0 +1,159 @@
+cmake_minimum_required(VERSION 3.15)
+project(besEditor)
+
+# -----------------------------
+# Qt auto-processing
+# -----------------------------
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTORCC ON)
+
+# UI files search path
+set(CMAKE_AUTOUIC_SEARCH_PATHS "${CMAKE_CURRENT_SOURCE_DIR}/ui")
+
+# -----------------------------
+# C++ Standard
+# -----------------------------
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# -----------------------------
+# Maya SDK
+# -----------------------------
+if(NOT DEFINED ENV{MAYA_LOCATION})
+    message(FATAL_ERROR "MAYA_LOCATION environment variable not set. Please set it to your Maya 2023 installation path.")
+endif()
+set(MAYA_LOCATION $ENV{MAYA_LOCATION})
+
+# include_directories(
+#     ${MAYA_LOCATION}/include
+#     ${CMAKE_CURRENT_SOURCE_DIR}/include
+# )
+
+include_directories(
+    "${MAYA_LOCATION}/include"
+    "${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
+
+
+link_directories(${MAYA_LOCATION}/lib)
+
+# -----------------------------
+# Qt setup (for headers only)
+# -----------------------------
+set(CMAKE_PREFIX_PATH "C:/Qt/5.15.19/msvc2019_64/lib/cmake")
+find_package(Qt5 COMPONENTS Widgets Core Gui REQUIRED)
+
+# -----------------------------
+# Source, header, UI, resource files
+# -----------------------------
+set(SOURCES
+    main.cpp
+    src/scriptEditorUtils.cpp
+    src/scriptEditorPanel.cpp
+    src/newCommand.cpp
+    src/buttonBar.cpp
+    src/commandList.cpp
+    src/editCommand.cpp
+    src/editFile.cpp
+    src/editTemplate.cpp
+    src/highlighter.cpp
+    src/lineNumber.cpp
+    src/newTemplate.cpp
+    src/scriptEditor.cpp
+    src/openTemplate.cpp
+    src/searchAndReplace.cpp
+    src/console.cpp
+    src/tabScriptEditor.cpp
+    src/config.cpp
+    src/mainUserScript.cpp
+)
+
+set(HEADERS
+    include/scriptEditorUtils.h
+    include/scriptEditorPanel.h
+    include/newCommand.h
+    include/config.h
+    include/style.h
+    include/buttonBar.h
+    include/commandList.h
+    include/editFile.h
+    include/editTemplate.h
+    include/highlighter.h
+    include/lineNumber.h
+    include/newTemplate.h
+    include/scriptEditor.h
+    include/openTemplate.h
+    include/searchAndReplace.h
+    include/editCommand.h
+    include/console.h
+    include/tabScriptEditor.h
+    include/mainUserScript.h
+)
+
+set(UI
+    ui/newCommand.ui
+    ui/scriptEditorPanel.ui
+    ui/scriptEditor.ui
+    ui/editCommand.ui
+    ui/editTemplate.ui
+    ui/newTemplate.ui
+    ui/openTemplate.ui
+    ui/searchAndReplace.ui
+    ui/buttonBar.ui
+    ui/commandList.ui
+    ui/lineNumber.ui
+    ui/mainScript.ui
+)
+
+set(RESOURCES
+    resources.qrc
+)
+
+# -----------------------------
+# Build shared library (plugin)
+# -----------------------------
+add_library(besEditor SHARED ${SOURCES} ${HEADERS} ${UI} ${RESOURCES})
+
+# Link Maya SDK and Qt
+target_link_libraries(besEditor
+    Foundation.lib
+    OpenMaya.lib
+    OpenMayaUI.lib
+    Qt5::Widgets
+    Qt5::Core
+    Qt5::Gui
+)
+
+# -----------------------------
+# Copy syntax highlighting files
+# -----------------------------
+add_custom_target(CopySyntaxFiles ALL
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    ${CMAKE_CURRENT_SOURCE_DIR}/syntaxLists
+    ${CMAKE_CURRENT_BINARY_DIR}/syntaxLists
+    COMMENT "Copying syntax highlighting files to build directory"
+)
+
+# -----------------------------
+# Set plugin extension for Windows
+# -----------------------------
+set_target_properties(besEditor PROPERTIES
+    PREFIX ""      # no "lib" prefix
+    SUFFIX ".mll"  # Maya plugin
+)
+
+# -----------------------------
+# Force static MSVC runtime
+# -----------------------------
+if(MSVC)
+    foreach(flag_var
+        CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE
+        CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE)
+        if(${flag_var} MATCHES "/MD")
+            string(REGEX REPLACE "/MD" "/MT" ${flag_var} "${${flag_var}}")
+        endif()
+    endforeach()
+endif()
