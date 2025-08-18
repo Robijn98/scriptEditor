@@ -96,26 +96,15 @@ link_directories(${MAYA_LOCATION}/lib)
 # Build shared library (plugin)
 add_library(besEditor SHARED ${SOURCES} ${HEADERS} ${UI} ${RESOURCES})
 
-# Link Maya and Qt libraries (names differ per platform)
-if(WIN32)
-    target_link_libraries(besEditor
-        Foundation.lib
-        OpenMaya.lib
-        OpenMayaUI.lib
-        Qt5::Widgets
-        Qt5::Core
-        Qt5::Gui
-    )
-elseif(UNIX AND NOT APPLE)
-    target_link_libraries(besEditor
-        Foundation
-        OpenMaya
-        OpenMayaUI
-        Qt5::Widgets
-        Qt5::Core
-        Qt5::Gui
-    )
-endif()
+# Link Maya and Qt libraries (Maya provides Qt at runtime)
+target_link_libraries(besEditor
+    Foundation
+    OpenMaya
+    OpenMayaUI
+    Qt5::Widgets
+    Qt5::Core
+    Qt5::Gui
+)
 
 # Copy syntax highlighting files to the build directory
 add_custom_target(CopySyntaxFiles ALL
@@ -125,18 +114,11 @@ add_custom_target(CopySyntaxFiles ALL
     COMMENT "Copying syntax highlighting files to build directory"
 )
 
-# Set correct plugin extension per platform
-if(WIN32)
-    set_target_properties(besEditor PROPERTIES
-        PREFIX ""         # no "lib" prefix
-        SUFFIX ".mll"     # Maya plugins on Windows
-    )
-elseif(UNIX AND NOT APPLE)
-    set_target_properties(besEditor PROPERTIES
-        PREFIX "lib"      # Linux keeps lib prefix
-        SUFFIX ".so"      # Maya plugins on Linux
-    )
-endif()
+# Set output plugin .so name
+set_target_properties(besEditor PROPERTIES
+    PREFIX "lib"
+    SUFFIX ".so"
+)
 
 # -------------------------------------------------------
 # Testing setup
@@ -147,28 +129,19 @@ enable_testing()
 # Build test executable
 add_executable(allTests tests/mayaTests.cpp)
 
-if(WIN32)
-    target_link_libraries(allTests
-        besEditor
-        GTest::gtest_main
-        Foundation.lib
-        OpenMaya.lib
-        OpenMayaUI.lib
-    )
-elseif(UNIX AND NOT APPLE)
-    target_link_libraries(allTests
-        besEditor
-        GTest::gtest_main
-        Foundation
-        OpenMaya
-        OpenMayaUI
-    )
+# Link against besEditor and Maya libs (avoid system Qt to prevent conflicts)
+target_link_libraries(allTests
+    besEditor
+    GTest::gtest_main
+    Foundation
+    OpenMaya
+    OpenMayaUI
+)
 
-    # Make sure Maya's lib path is used at runtime (Linux only)
-    set_target_properties(allTests PROPERTIES
-        BUILD_RPATH "${MAYA_LOCATION}/lib"
-    )
-endif()
+# Make sure Maya's lib path is used at runtime
+set_target_properties(allTests PROPERTIES
+    BUILD_RPATH "${MAYA_LOCATION}/lib"
+)
 
 # Discover tests automatically
 gtest_discover_tests(allTests)

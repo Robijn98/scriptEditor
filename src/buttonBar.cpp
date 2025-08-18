@@ -147,16 +147,16 @@ void ButtonBar::on_runMainScript_clicked()
 
 void ButtonBar::consoleUp()
 {
-    ui->clearTerminalButton->setIcon(QIcon("icons/clearUp.png"));
-    ui->clearButton->setIcon(QIcon("icons/clearDown.png"));
+    ui->clearTerminalButton->setIcon(QIcon(":/icons/icons/clearUp.png"));
+    ui->clearButton->setIcon(QIcon(":/icons/icons/clearDown.png"));
     ui->clearTerminalButton->update();
     ui->clearButton->update();
 }
 
 void ButtonBar::consoleDown()
 {
-    ui->clearTerminalButton->setIcon(QIcon("icons/clearDown.png"));
-    ui->clearButton->setIcon(QIcon("icons/clearUp.png"));
+    ui->clearTerminalButton->setIcon(QIcon(":/icons/icons/clearDown.png"));
+    ui->clearButton->setIcon(QIcon(":/icons/icons/clearUp.png"));
     ui->clearTerminalButton->update();
     ui->clearButton->update();
 }
