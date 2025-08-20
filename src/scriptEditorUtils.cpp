@@ -43,6 +43,12 @@ void showBesEditor()
     if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
         tabEditor->loadState();
     }
+    else
+    {
+        tabEditor->closeAllTabs();
+    }
+    
+
 
     // Connect visibility change signal to save state when dock widget is hidden
     QObject::connect(dockWidget, &QDockWidget::visibilityChanged, panel, [panel](bool visible) {
