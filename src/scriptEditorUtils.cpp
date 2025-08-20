@@ -6,6 +6,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QMainWindow>
 #include "scriptEditorPanel.h"
+#include <QSettings>
 
 void showBesEditor()
 {
@@ -18,6 +19,8 @@ void showBesEditor()
 
     QDockWidget* dockWidget = mayaMainWindow->findChild<QDockWidget*>("ScriptEditorPanel");
     ScriptEditorPanel* panel = nullptr;
+
+
 
     if (!dockWidget) {
         dockWidget = new QDockWidget("Bes Editor", mayaMainWindow);
@@ -38,16 +41,27 @@ void showBesEditor()
     dockWidget->raise();
     dockWidget->setFocus();
 
-    std::cout << "Opening Script Editor" << std::endl;
+    std::cout << "Opening Script Editor Test Again" << std::endl;
+
+
+
 
     // Load the state of the tab editor if it exists
-    if (auto* tabEditor = panel->findChild<TabScriptEditor*>()) {
+    TabScriptEditor* tabEditor = panel->findChild<TabScriptEditor*>();
+    if (tabEditor) {
         tabEditor->loadState();
+        // tabEditor = new TabScriptEditor(panel);
+        // tabEditor->splitEditor(); 
+        MGlobal::displayInfo("sate loaded");
     }
-    else
+    else 
     {
-        tabEditor->splitEditor();
+        // Create a new TabScriptEditor if it doesn't exist
+        tabEditor = new TabScriptEditor(panel);
+        tabEditor->splitEditor(); 
+        MGlobal::displayInfo("No existing TabScriptEditor found, created a new one.");
     }
+
     
 
 
