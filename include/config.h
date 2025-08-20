@@ -18,30 +18,34 @@ public:
     // Initialize paths at runtime
     static void initialize()
     {
-        // Maya user scripts directory
-        QString userScriptsDir = QDir::homePath() + "/Documents/maya/scripts/";
+        // Maya sets MAYA_APP_DIR, which points to Documents/maya/<version>/
+        // Example: C:/Users/John/Documents/maya/2025/
+        QString mayaAppDir = qEnvironmentVariable("MAYA_APP_DIR", 
+                                QDir::homePath() + "/Documents/maya/");
 
-        // Ensure general folder exists
-        QDir generalDir(userScriptsDir);
-        if (!generalDir.exists()) {
-            generalDir.mkpath(".");
-        }
+        // Scripts and plug-ins dirs under mayaAppDir
+        QString userScriptsDir = QDir(mayaAppDir + "/scripts/").absolutePath();
+        QString userPlugInsDir = QDir(mayaAppDir + "/plug-ins/").absolutePath();
 
-        // Directories installed by drag-and-drop
-        riggingCommandsPath = QDir(userScriptsDir + "riggingCommands").absolutePath();
-        riggingTemplatesPath = QDir(userScriptsDir + "riggingTemplates").absolutePath();
-        QString syntaxDir = QDir(userScriptsDir + "syntaxLists").absolutePath();
+        // Rigging folders
+        riggingCommandsPath  = QDir(userScriptsDir + "/riggingCommands").absolutePath();
+        riggingTemplatesPath = QDir(userScriptsDir + "/riggingTemplates").absolutePath();
 
-        // Syntax file path
+        // Syntax list folder + file
+        QString syntaxDir = QDir(userScriptsDir + "/syntaxLists").absolutePath();
         syntaxPath = QDir(syntaxDir).filePath("maya_cmds_list.txt");
 
-        // Plugin file (assumes drag-and-drop installer copied it here)
-        pluginFilePath = QDir(QDir::homePath() + "/Documents/maya/plug-ins").filePath("libbesEditor.so");
-        
-        // Main script path 
-        mainScriptPath = QDir(userScriptsDir + "mainScript.py").absolutePath();
-        
-        // Ensure directories exist (creates them if missing)
+        // Plugin file path
+    #ifdef _WIN32
+        pluginFilePath = QDir(userPlugInsDir).filePath("besEditor.mll");
+    #else
+        pluginFilePath = QDir(userPlugInsDir).filePath("libbesEditor.so");
+    #endif
+
+        // Main script path
+        mainScriptPath = QDir(userScriptsDir).filePath("mainScript.py");
+
+        // Ensure directories exist
         QDir().mkpath(riggingCommandsPath);
         QDir().mkpath(riggingTemplatesPath);
         QDir().mkpath(syntaxDir);
@@ -49,4 +53,4 @@ public:
     }
 };
 
-#endif
+#endif // CONFIG_H

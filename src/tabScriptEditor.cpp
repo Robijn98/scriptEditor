@@ -29,7 +29,11 @@ TabScriptEditor::TabScriptEditor(QWidget *parent)
     this->updateGeometry();
     this->adjustSize();
     this->update();
-
+    //make sure the splitter has at least one tab widget
+    if (tabWidgets.isEmpty()) {
+        tw = createTabWidget(true); // Create with default tab
+        splitter->addWidget(tw);
+    }
 }
 
 
