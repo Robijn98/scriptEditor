@@ -26,6 +26,7 @@ void showBesEditor()
         panel = new ScriptEditorPanel(dockWidget);
         dockWidget->setWidget(panel);
 
+
         mayaMainWindow->addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
     }
     else {
@@ -45,7 +46,7 @@ void showBesEditor()
     }
     else
     {
-        tabEditor->closeAllTabs();
+        tabEditor->splitEditor();
     }
     
 

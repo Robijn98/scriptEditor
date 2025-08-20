@@ -229,7 +229,7 @@ void TabScriptEditor::closeAllTabs()
 
     closeAllTabsInternal();
     
-    emit allTabsClosed(); // Notify that all tabs are closed
+    emit allTabsClosed(); 
 }
 
 void TabScriptEditor::closeAllTabsInternal()
