@@ -22,18 +22,14 @@ TabScriptEditor::TabScriptEditor(QWidget *parent)
     splitter = new QSplitter(Qt::Horizontal, this);
     layout->addWidget(splitter);
 
-    QTabWidget* tw = createTabWidget(false); 
+    QTabWidget* tw = createTabWidget(true); 
     splitter->addWidget(tw);
    
     this->setStyleSheet(Style::tabStyle);
     this->updateGeometry();
     this->adjustSize();
     this->update();
-    //make sure the splitter has at least one tab widget
-    if (tabWidgets.isEmpty()) {
-        tw = createTabWidget(true); // Create with default tab
-        splitter->addWidget(tw);
-    }
+
 }
 
 
