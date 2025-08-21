@@ -47,6 +47,10 @@ Clone the repo
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+> [!WARNING]  
+> First time you open the script Editor it sometimes doesn't intiate an Editor, to remedy this go to the tabs menu and use close all tabs, this will reset the layout to the correct state. This state will be remembered whenever you now open the Bes Editor. Even if the plugin is unloaded and reloaded. 
+
+
 To use the program you can simply clone the repo or download the dragdrop folder. 
 Make sure that when you are using the drag and drop both the editor and the 
 install script are located in the same folder than drop the dragdrop in a maya scene,
